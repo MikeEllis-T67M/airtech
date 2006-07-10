@@ -13,7 +13,7 @@
 </div>
 
 <div id="mainview">
-    <H1>Page Header - Modified</H1>
+    <H1>Page Header</H1>
 </div>
 
 <div id="infobar">
