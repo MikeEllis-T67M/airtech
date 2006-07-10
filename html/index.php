@@ -14,6 +14,7 @@
 
 <div id="mainview">
     <H1>Page Header testing</H1>
+    <P>Have I got the permissions right?
 </div>
 
 <div id="infobar">
