@@ -13,7 +13,7 @@
 </div>
 
 <div id="mainview">
-    <H1>Page Header with Auto Update</H1>
+    <H1>Page Header testing</H1>
 </div>
 
 <div id="infobar">
