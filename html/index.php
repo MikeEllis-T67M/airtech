@@ -5,6 +5,9 @@
   <title>Aircraft Technical Log System</title>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+  <style type="text/css" media="all">
+    @import url("css/style.css");
+  </style>
 
   <style type="text/css">
     .bordered {

@@ -1,0 +1,22 @@
+/* General text styles */
+h1, h2 {
+	font-family: "Comic Sans MS", arial, helvetica, sans-serif;
+	font-style:  italic;
+	font-weight: bold;
+	color:       black;
+}
+
+h1 {
+    font-size: 20pt;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+body {
+    font-family: verdana, tahoma, helvetica, sans-serif;
+    font-size:   14pt;
+    background:  yellow;
+    color:       black;
+}
