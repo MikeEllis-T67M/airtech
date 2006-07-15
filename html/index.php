@@ -37,7 +37,8 @@
   </script>
 </head>
 <body>
-  <div id="topstrap">
+  <div id="topstrap" class="bordered">
+    <H1>The Slingsby SR Redhill Group</H1>
   </div>
 
   <div id="main" class="bordered">
