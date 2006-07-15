@@ -34,7 +34,7 @@
   <div id="topstrap">
   </div>
 
-  <div id="bordered">
+  <div id="main" class="bordered">
     <H1>Page Header testing</H1>
     <P>Have I got the permissions right?
   </div>
