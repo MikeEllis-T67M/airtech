@@ -14,8 +14,8 @@
     }
   </style>
 
-  <script type="text/javascript" src="cssquery2-p.js"></script>
-  <script type="text/javascript" src="ruzeeborders.js"></script>
+  <script type="text/javascript" src="ruzee/cssquery2-p.js"></script>
+  <script type="text/javascript" src="ruzee/ruzeeborders.js"></script>
 
   <script type="text/javascript"><!--
     // add the border definitions
