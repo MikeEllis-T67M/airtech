@@ -15,6 +15,8 @@
       width:90%;
       padding:30px;
       background-color:yellow;
+      position:absolute;
+      left:5%;
     }
   </style>
 
