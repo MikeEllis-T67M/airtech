@@ -12,7 +12,7 @@
   <style type="text/css">
     .bordered {
       border:3px black solid;
-      width:200px;
+      width:90%;
       padding:30px;
       background-color:yellow;
     }
