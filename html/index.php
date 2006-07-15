@@ -8,9 +8,10 @@
 
   <style type="text/css">
     .bordered {
-      border:3px red solid;
+      border:3px black solid;
       width:200px;
       padding:30px;
+      background-color:yellow;
     }
   </style>
 
