@@ -7,15 +7,7 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   <style type="text/css" media="all">
     @import url("css/style.css");
-  </style>
-
-  <style type="text/css">
-    .bordered {
-      border:           3px black solid;
-      padding:          30px;
-      color:            black;
-      background-color: yellow;
-    }
+    @import url("css/layout.css");
   </style>
 
   <script type="text/javascript" src="ruzee/cssquery2-p.js"></script>

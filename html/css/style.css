@@ -20,3 +20,12 @@ h2 {
     text-align: center;
     color:      #444444;
 }
+
+/* Class definition for the borders */
+.bordered {
+    border:           3px black solid;
+    padding:          20px;
+    color:            black;
+    background-color: yellow;
+}
+
