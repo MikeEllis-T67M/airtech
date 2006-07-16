@@ -11,12 +11,10 @@
 
   <style type="text/css">
     .bordered {
-      border:3px black solid;
-      width:90%;
-      padding:30px;
-      background-color:yellow;
-      margin-left:auto;
-      margin-right:auto;
+      border:           3px black solid;
+      padding:          30px;
+      color:            black;
+      background-color: yellow;
     }
   </style>
 
@@ -37,17 +35,17 @@
   </script>
 </head>
 <body>
-  <div id="topstrap" class="bordered">
+  <div id="top" class="bordered">
     <H1>The Slingsby SR Redhill Group</H1>
+    <P>&copy; 2006 Mike Ellis and the Slingsby SR Redhill Group
   </div>
 
   <div id="main" class="bordered">
-    <H1>Page Header testing</H1>
-    <P>Have I got the permissions right?
+    <H1>Main page area</H1>
   </div>
 
-  <div id="infobar">
-    <H1>Info bar goes here</H1>
+  <div id="navbar" class="bordered">
+    <H1>Navigation bar</H1>
   </div>
 
 </body>

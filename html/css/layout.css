@@ -1,0 +1,16 @@
+/* Basic page layout */
+#top {
+    margin-left:  5%;
+    margin-right: 5%;
+}
+
+#navbar {
+    margin-left:  5%;
+    width:        20%;
+}
+
+#main {
+    margin-right: 5%;
+    width:        65%;
+}
+

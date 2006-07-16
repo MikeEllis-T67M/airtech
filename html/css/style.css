@@ -15,9 +15,8 @@ h2 {
     font-size: 16pt;
 }
 
-body {
-    font-family: verdana, tahoma, helvetica, sans-serif;
-    font-size:   14pt;
-    background:  yellow;
-    color:       black;
+#top p {
+    font-size:  10pt;
+    text-align: center;
+    color:      #444444;
 }
