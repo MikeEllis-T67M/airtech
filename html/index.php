@@ -1,3 +1,9 @@
+<?php
+// All scripts should start with this to ensure that the database is
+// connected and the user is authenticated
+require 'include/db_params.inc';
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -5,10 +11,8 @@
   <title>Aircraft Technical Log System</title>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-  <style type="text/css" media="all">
-    @import url("css/style.css");
-    @import url("css/layout.css");
-  </style>
+  <link  rel="stylesheet" type="text/css" media="all" href="css/style.css">
+  <link  rel="stylesheet" type="text/css" media="all" href="css/layout.css">
 
   <script type="text/javascript" src="ruzee/cssquery2-p.js"></script>
   <script type="text/javascript" src="ruzee/ruzeeborders.js"></script>
@@ -30,8 +34,8 @@
     <div id="layout_top">
       <div class="bordered">
         <div id="top" class="content">
-          <IMG style="float: left" src="images/slingsby_right.png">
-          <IMG style="float: right" src="images/slingsby_left.png">
+          <IMG style="float: left " src="images/slingsby_right.png" height=80>
+          <IMG style="float: right" src="images/slingsby_left.png"  height=80>
           <H1>The&nbsp;Slingsby&nbsp;SR Redhill&nbsp;Group</H1>
           <P>&copy;&nbsp;2006&nbsp;Mike&nbsp;Ellis and the Slingsby&nbsp;SR Redhill&nbsp;Group
         </div>
@@ -70,6 +74,30 @@
       <div class="bordered">
         <div id="main" class="content">
           <H1>Main page area</H1>
+<?php
+// Get some data from the database
+$sql = "SELECT date, aircraft, pic, takeoff, landing
+        FROM   flights";
+
+// Execute the query and put results in $result
+$result = mysql_query($sql)
+or die ('Unable to execute query - '.$sql.' Error is' . mysql_error());
+
+echo "<TABLE>";
+
+// Write each flight out one row at a time
+while ($flight = mysql_fetch_assoc($result))
+{
+   echo "<TR><TD>$flight['date']</TD>
+             <TD>$flight['aircraft']</TD>
+             <TD>$flight['pic']</TD>
+             <TD>$flight['takeoff']</TD>
+             <TD>$flight['landing']</TD></TR>";
+}
+
+echo "</TABLE>";
+?>
+
           <P>This will normally have quite a large amount of content in it, primarily derived by extracting information from the SQL database.
         </div>
       </div>

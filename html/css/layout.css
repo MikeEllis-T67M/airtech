@@ -11,6 +11,7 @@
 
 /* The strap across the top of the page, including the border */
 #layout_top {
+    height:       100%;
 }
 
 /* The left hand navigation pane, including the border */
