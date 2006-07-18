@@ -73,30 +73,6 @@ require 'include/db_params.inc';
       <div class="bordered">
         <div id="main" class="content">
           <H1>Main page area</H1>
-<?php
-// Get some data from the database
-$sql = "SELECT date, aircraft, pic, takeoff, landing
-        FROM   flights";
-
-// Execute the query and put results in $result
-$result = mysql_query($sql)
-or die ('Unable to execute query - '.$sql.' Error is' . mysql_error());
-
-echo "<TABLE>";
-
-// Write each flight out one row at a time
-while ($flight = mysql_fetch_assoc($result))
-{
-   echo "<TR><TD>$flight['date']</TD>
-             <TD>$flight['aircraft']</TD>
-             <TD>$flight['pic']</TD>
-             <TD>$flight['takeoff']</TD>
-             <TD>$flight['landing']</TD></TR>";
-}
-
-echo "</TABLE>";
-?>
-
           <P>This will normally have quite a large amount of content in it, primarily derived by extracting information from the SQL database.
         </div>
       </div>
