@@ -26,19 +26,40 @@
     //-->
   </script>
 </head>
-<body>
-  <div id="top" class="bordered">
-    <H1>The Slingsby SR Redhill Group</H1>
-    <P>&copy; 2006 Mike Ellis and the Slingsby SR Redhill Group
-  </div>
+<body class="center90">
+    <div id="layout_top">
+      <div class="bordered">
+        <div id="top" class="content">
+          <H1>The&nbsp;Slingsby&nbsp;SR Redhill&nbsp;Group</H1>
+          <P>&copy;&nbsp;2006&nbsp;Mike&nbsp;Ellis and the Slingsby&nbsp;SR Redhill&nbsp;Group
+        </div>
+      </div>
+    </div>
 
-  <div id="main" class="bordered">
-    <H1>Main page area</H1>
-  </div>
+    <div id="layout_left">
+      <div class="bordered">
+        <div id="navbar" class="content">
+          <H1>Navigation bar</H1>
+        </div>
+      </div>
 
-  <div id="navbar" class="bordered">
-    <H1>Navigation bar</H1>
-  </div>
+      <div class="bordered">
+        <div id="links" class="content">
+          <H1>Links</H1>
+          <P><A HREF="http://www.cubair.co.uk">Cubair Flight Training</A>
+          <P><A HREF="http://www.redhillaerodrome.com">Redhill Aerodrome</A>
+          <P><A HREF="http://www.ais.org.uk">NOTAMs</A>
+        </div>
+      </div>
+    </div>
 
+    <div id="layout_right">
+      <div class="bordered">
+        <div id="main" class="content">
+          <H1>Main page area</H1>
+          <P>This will normally have quite a large amount of content in it, primarily derived by extracting information from the SQL database.
+        </div>
+      </div>
+    </div>
 </body>
 </html>

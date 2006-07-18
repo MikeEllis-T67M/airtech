@@ -7,18 +7,47 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 20pt;
-    text-align: center;
+    font-size:    14pt;
 }
 
 h2 {
-    font-size: 16pt;
+    font-size: 12pt;
+}
+
+/* Text styles for specific portions of the page */
+#top h1 {
+    font-size:  20pt;
+    text-align: center;
 }
 
 #top p {
     font-size:  10pt;
     text-align: center;
-    color:      #444444;
+    color:      #666666;
+}
+
+/* Link handling */
+#links a {
+	font-family:      arial, helvetica, sans-serif;
+    font-weight:      normal;
+    font-style:       normal;
+    text-align:       center;
+    text-decoration:  none;
+    display:          block;
+    height:           100%;
+    width:            100%;
+    color:            black;
+    background-color: yellow;
+}
+
+#links a:link,
+#links a:visited {
+}
+
+#links a:hover,
+#links a:active {
+    color:            yellow;
+    background-color: black;
 }
 
 /* Class definition for the borders */
@@ -29,3 +58,12 @@ h2 {
     background-color: yellow;
 }
 
+/* Class definition for "content" - by keeping it separate from the
+ * border, we prevent content from "escaping" the box and
+ * appearing over the top of the border.
+ */
+.content {
+    padding:          0px;
+    margin:           0px;
+    overflow:         hidden;
+}
