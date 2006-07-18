@@ -1,9 +1,16 @@
+/* Background page style */
+body {
+    background-color: #FFFFA0;
+	color:            black;
+}
+
 /* General text styles */
 h1, h2 {
-	font-family: "Comic Sans MS", arial, helvetica, sans-serif;
-	font-style:  italic;
-	font-weight: bold;
-	color:       black;
+	font-family:      "Comic Sans MS", arial, helvetica, sans-serif;
+	font-style:       italic;
+	font-weight:      bold;
+    padding:          0px;
+    margin:           2px;
 }
 
 h1 {
@@ -12,6 +19,11 @@ h1 {
 
 h2 {
     font-size: 12pt;
+}
+
+p {
+    padding:          0px;
+    margin:           0px;
 }
 
 /* Text styles for specific portions of the page */
@@ -27,7 +39,7 @@ h2 {
 }
 
 /* Link handling */
-#links a {
+a {
 	font-family:      arial, helvetica, sans-serif;
     font-weight:      normal;
     font-style:       normal;
@@ -40,12 +52,12 @@ h2 {
     background-color: yellow;
 }
 
-#links a:link,
-#links a:visited {
+a:link,
+a:visited {
 }
 
-#links a:hover,
-#links a:active {
+a:hover,
+a:active {
     color:            yellow;
     background-color: black;
 }
@@ -63,7 +75,5 @@ h2 {
  * appearing over the top of the border.
  */
 .content {
-    padding:          0px;
-    margin:           0px;
     overflow:         hidden;
 }
