@@ -30,6 +30,8 @@
     <div id="layout_top">
       <div class="bordered">
         <div id="top" class="content">
+          <IMG style="float: left" src="images/slingsby_right.png">
+          <IMG style="float: right" src="images/slingsby_left.png">
           <H1>The&nbsp;Slingsby&nbsp;SR Redhill&nbsp;Group</H1>
           <P>&copy;&nbsp;2006&nbsp;Mike&nbsp;Ellis and the Slingsby&nbsp;SR Redhill&nbsp;Group
         </div>
@@ -49,7 +51,7 @@
             </SELECT>
           </FORM>
           <H1>Documentation</H1>
-          <P><A HREF="http://www.gbnsr.org.uk/docs/checklist.pdf">Aircraft checklist</A>
+          <P><A HREF="http://www.gbnsr.org.uk/checklist.pdf">Aircraft checklist</A>
         </div>
       </div>
 
