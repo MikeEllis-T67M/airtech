@@ -14,11 +14,12 @@ h1, h2 {
 }
 
 h1 {
-    font-size:        12pt;
+    font-size:        20pt;
+    text-align:       center;
 }
 
 h2 {
-    font-size:        10pt;
+    font-size:        14pt;
 }
 
 p {
@@ -27,11 +28,6 @@ p {
 }
 
 /* Text styles for specific portions of the page */
-#top h1 {
-    font-size:  20pt;
-    text-align: center;
-}
-
 #top p {
     font-size:  8pt;
     text-align: center;
@@ -49,7 +45,6 @@ a {
     height:           100%;
     width:            100%;
     color:            black;
-    background-color: yellow;
 }
 
 a:link,
@@ -87,6 +82,7 @@ a:active {
 
 .techlog th {
     font-weight:      bold;
+    font-size:        12pt;
     padding:          4px;
 }
 

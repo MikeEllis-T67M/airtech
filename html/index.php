@@ -44,7 +44,7 @@ require 'include/db_params.inc';
     <div id="layout_left">
       <div class="bordered">
         <div id="navbar" class="content">
-          <H1>Technical Log</H1>
+          <H2>Technical Log</H2>
           <FORM NAME="date">
             <SELECT NAME="SelectDate" onChange="document.location.href=document.nav.SelectURL.options[document.date.SelectDate.selectedIndex].value">
               <OPTION VALUE="http://www.cs.tut.fi/~jkorpela/forms/jsnav.html" All>All techlog entries</OPTION>
@@ -53,14 +53,15 @@ require 'include/db_params.inc';
               <OPTION VALUE="">July 2006</OPTION>
             </SELECT>
           </FORM>
-          <H1>Documentation</H1>
+          <H2>Documentation</H2>
           <P><A HREF="http://www.gbnsr.org.uk/checklist.pdf">Aircraft checklist</A>
         </div>
       </div>
 
       <div class="bordered">
         <div id="links" class="content">
-          <H1>External links</H1>
+          <H2>External links</H2>
+          <P><A HREF="http://www.cubair.demon.co.uk/pages/members/cubair_online_scheduling.htm">Online booking system</A>
           <P><A HREF="http://www.cubair.co.uk">Cubair Flight Training</A>
           <P><A HREF="http://www.redhillaerodrome.com">Redhill Aerodrome</A>
           <P><A HREF="http://www.met-office.gov.uk/aviation">Weather</A>
@@ -74,77 +75,12 @@ require 'include/db_params.inc';
         <div id="main" class="content">
         
 <?php
-// Get some data from the database
-$sql = "SELECT   DATE_FORMAT(Takeoff, '%a, %D %b %Y')      AS TODate,
-                 DATE_FORMAT(Landing, '%a, %D %b %Y')      AS LdgDate,
-                 DATE_FORMAT(Takeoff, '%H:%i')             AS TOTime,
-                 DATE_FORMAT(Landing, '%H:%i')             AS LdgTime,
-                 TIME_FORMAT(TIMEDIFF(Landing, Takeoff), '%k:%i') AS FlightTime,
-                 StartTach,
-                 EndTach,
-                 Departure,
-                 Arrival,
-                 Aircraft,
-                 PIC
-        FROM     Flights
-        ORDER BY Takeoff, Aircraft";
+          // Get some data from the database
+          require 'include/techlog.inc';
 
-// Execute the query and put results in $result
-$result = mysql_query($sql)
-or die ('Unable to execute query - '.$sql.' Error is' . mysql_error());
-
-echo "<TABLE CLASS=\"techlog\">";
-echo "<TR><TH>Aircraft</TH><TH>Date</TH><TH>Flight times</TH><TH>Duration</TH><TH>Flight</TH><TH>Start Tach</TH><TH>End Tach</TH><TH>Tach time</TH><TH>Pilot</TH></TR>";
-
-$oddeven   = "odd";
-$last_date = "";
-
-// Write each flight out one row at a time
-while ($flight = mysql_fetch_assoc($result))
-{
-   // Alternate the row class as the date changes to given alternate-line greying
-   if ($flight['TODate'] != $last_date)
-   {
-      $last_date = $flight['TODate'];
-      if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-   }
-   echo "<TR class=\"" . $oddeven . "\">";
-
-   echo "<TD>" . $flight['Aircraft']                    . " </TD>";
-   
-   // Show the date as a single field if it was a single date, or as a range if
-   // the flight spanned midnight
-   if ($flight['TODate'] == $flight['LdgDate'])
-   {
-     echo "<TD>" . $flight['TODate'] . " </TD>";
-   }
-   else
-   {
-     echo "<TD>" . $flight['TODate'] . "&ndash;" . $flight['LdgDate'] . " </TD>";
-   }
-   
-   echo "<TD>" . $flight['TOTime'] . "&ndash;" . $flight['LdgTime'] . " </TD>";
-   echo "<TD>" . $flight['FlightTime']                        . " </TD>";
-   
-   if ($flight['Departure'] == $flight['Arrival'])
-   {
-     echo "<TD>" . $flight['Departure'] . " (local)</TD>";
-   }
-   else
-   {
-     echo "<TD>" . $flight['Departure'] . "&ndash;" . $flight['Arrival'] . "</TD>";
-   }
-   
-   echo "<TD>" . number_format($flight['StartTach'], 1) . " </TD>";
-   echo "<TD>" . number_format($flight['EndTach'], 1)   . " </TD>";
-   echo "<TD>" . number_format($flight['EndTach'] -
-                               $flight['StartTach'], 1) . " </TD>";
-
-   echo "<TD>" . $flight['PIC']                         . " </TD>";
-   echo "</TR>";
-}
-
-echo "</TABLE>";
+          print_techlog("G-BNSR");
+          print_techlog("G-BNSR", "Jun 2006");
+          print_techlog("G-BNSR", "May 2006", "MikeE");
 ?>
 
         </div>
