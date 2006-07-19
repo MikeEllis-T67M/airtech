@@ -1,28 +1,26 @@
 /* Basic page layout */
 
 /* the whole page, including the borders (if any) */
-.center90 {
-    width:        90%;
+.center10 {
     min-width:    300px;
-    margin-left:  auto;
-    margin-right: auto;
+    margin-left:  10px;
+    margin-right: 10px;
     overflow:     auto;
 }
 
 /* The strap across the top of the page, including the border */
 #layout_top {
-    height:       100%;
 }
 
 /* The left hand navigation pane, including the border */
 #layout_left {
-    width:        30%;
+    width:        20%;
     float:        left;
 }
 
 /* The right hand navigation pane, including the border */
 #layout_right {
-    width:        70%;
+    width:        80%;
     min-width:    50px;
     float:        right;
 }

@@ -29,7 +29,7 @@ require 'include/db_params.inc';
     //-->
   </script>
 </head>
-<body class="center90">
+<body class="center10">
     <div id="layout_top">
       <div class="bordered">
         <div id="top" class="content">
@@ -72,8 +72,81 @@ require 'include/db_params.inc';
     <div id="layout_right">
       <div class="bordered">
         <div id="main" class="content">
-          <H1>Main page area</H1>
-          <P>This will normally have quite a large amount of content in it, primarily derived by extracting information from the SQL database.
+        
+<?php
+// Get some data from the database
+$sql = "SELECT   DATE_FORMAT(Takeoff, '%a, %D %b %Y')      AS TODate,
+                 DATE_FORMAT(Landing, '%a, %D %b %Y')      AS LdgDate,
+                 DATE_FORMAT(Takeoff, '%H:%i')             AS TOTime,
+                 DATE_FORMAT(Landing, '%H:%i')             AS LdgTime,
+                 TIME_FORMAT(TIMEDIFF(Landing, Takeoff), '%k:%i') AS FlightTime,
+                 StartTach,
+                 EndTach,
+                 Departure,
+                 Arrival,
+                 Aircraft,
+                 PIC
+        FROM     Flights
+        ORDER BY Takeoff, Aircraft";
+
+// Execute the query and put results in $result
+$result = mysql_query($sql)
+or die ('Unable to execute query - '.$sql.' Error is' . mysql_error());
+
+echo "<TABLE CLASS=\"techlog\">";
+echo "<TR><TH>Aircraft</TH><TH>Date</TH><TH>Flight times</TH><TH>Duration</TH><TH>Flight</TH><TH>Start Tach</TH><TH>End Tach</TH><TH>Tach time</TH><TH>Pilot</TH></TR>";
+
+$oddeven   = "odd";
+$last_date = "";
+
+// Write each flight out one row at a time
+while ($flight = mysql_fetch_assoc($result))
+{
+   // Alternate the row class as the date changes to given alternate-line greying
+   if ($flight['TODate'] != $last_date)
+   {
+      $last_date = $flight['TODate'];
+      if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
+   }
+   echo "<TR class=\"" . $oddeven . "\">";
+
+   echo "<TD>" . $flight['Aircraft']                    . " </TD>";
+   
+   // Show the date as a single field if it was a single date, or as a range if
+   // the flight spanned midnight
+   if ($flight['TODate'] == $flight['LdgDate'])
+   {
+     echo "<TD>" . $flight['TODate'] . " </TD>";
+   }
+   else
+   {
+     echo "<TD>" . $flight['TODate'] . "&ndash;" . $flight['LdgDate'] . " </TD>";
+   }
+   
+   echo "<TD>" . $flight['TOTime'] . "&ndash;" . $flight['LdgTime'] . " </TD>";
+   echo "<TD>" . $flight['FlightTime']                        . " </TD>";
+   
+   if ($flight['Departure'] == $flight['Arrival'])
+   {
+     echo "<TD>" . $flight['Departure'] . " (local)</TD>";
+   }
+   else
+   {
+     echo "<TD>" . $flight['Departure'] . "&ndash;" . $flight['Arrival'] . "</TD>";
+   }
+   
+   echo "<TD>" . number_format($flight['StartTach'], 1) . " </TD>";
+   echo "<TD>" . number_format($flight['EndTach'], 1)   . " </TD>";
+   echo "<TD>" . number_format($flight['EndTach'] -
+                               $flight['StartTach'], 1) . " </TD>";
+
+   echo "<TD>" . $flight['PIC']                         . " </TD>";
+   echo "</TR>";
+}
+
+echo "</TABLE>";
+?>
+
         </div>
       </div>
     </div>

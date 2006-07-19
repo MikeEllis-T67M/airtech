@@ -14,11 +14,11 @@ h1, h2 {
 }
 
 h1 {
-    font-size:    14pt;
+    font-size:        12pt;
 }
 
 h2 {
-    font-size: 12pt;
+    font-size:        10pt;
 }
 
 p {
@@ -33,7 +33,7 @@ p {
 }
 
 #top p {
-    font-size:  10pt;
+    font-size:  8pt;
     text-align: center;
     color:      #666666;
 }
@@ -76,4 +76,26 @@ a:active {
  */
 .content {
     overflow:         hidden;
+}
+
+/* Class definitions for the techlog table */
+.techlog {
+    font-family:      arial, helvetica, sans-serif;
+    border-spacing:   0px;
+    font-size:        10pt;
+}
+
+.techlog th {
+    font-weight:      bold;
+    padding:          4px;
+}
+
+.techlog td {
+    text-align:       center;
+    padding-top:      2px;
+    padding-bottom:   2px;
+}
+
+.techlog .odd {
+    background-color: #FFFFA0;
 }
