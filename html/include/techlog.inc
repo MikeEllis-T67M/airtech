@@ -38,9 +38,11 @@ function print_techlog($aircraft, $month, $chargee)
     $sql .= "AND ( Charge1 = '" . $chargee . "' OR Charge2 = '" . $chargee . "') ";
   }
 
+  echo $aircraft;
+  
   if ($month != null)
   {
-    echo " in " . $month;
+    echo " for " . $month;
     $sql .= "AND DATE_FORMAT(Takeoff, '%b %Y') = '". $month . "' ";
   }
   echo "</H1>\n";
