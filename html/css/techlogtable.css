@@ -44,6 +44,7 @@ table.techlog_table th {
 }
 
 table.techlog_table td {
+    border-bottom:    1px;
 }
 
 table.techlog_table tr.odd {
