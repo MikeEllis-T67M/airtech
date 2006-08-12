@@ -19,6 +19,8 @@ function print_techlog($aircraft, $month, $chargee)
                    EndAirframeHours,
                    Departure,
                    Arrival,
+                   Landings,
+                   TouchAndGoes,
                    PIC,
                    Pax,
                    Charge1,
@@ -55,7 +57,7 @@ function print_techlog($aircraft, $month, $chargee)
   echo "<THEAD CLASS=\"techlog_fixed\">\n";
   echo "<TR>";
   echo "<TH>Flight details</TH><TH>Flight times</TH><TH>Airframe</TH>";
-  echo "<TH>Tach</TH><TH>Pilot</TH><TH>Pax</TH><TH>Payment</TH><TH>Notes</TH>";
+  echo "<TH>Tach</TH><TH>Cycles</TH><TH>Pilot/Pax</TH><TH>Payment</TH><TH>Notes</TH>";
   echo "</TR>\n";
   echo "</THEAD>\n";
   echo "<TBODY CLASS=\"techlog_scrolling\">\n";
@@ -102,9 +104,15 @@ function print_techlog($aircraft, $month, $chargee)
            number_format($flight['EndTach'], 1),
            number_format($flight['EndTach'] - $flight['StartTach'], 1));
 
+    // Cycles
+    echo "<TD>";
+    if ($flight['TouchAndGoes'] > 0) echo $flight['TouchAndGoes'] . "+";
+    echo $flight['Landings'] . "</TD>";
+    
     // Pilot in command and passenger
-    echo "<TD>" . $flight['PIC'] . "</TD>";
-    echo "<TD>" . $flight['Pax'] . "</TD>";
+    echo "<TD>" . $flight['PIC'];
+    if ($flight['Pax'] != "") echo "/" . $flight['Pax'];
+    echo "</TD>";
     
     // Charging info
     if ($flight['Charge2'] == null)
