@@ -39,12 +39,12 @@ table.techlog_table {
 
 table.techlog_table th {
     font-weight:      bold;
-    font-size:        12pt;
-    padding:          4px;
+    font-size:        10pt;
+    padding:          2px;
 }
 
 table.techlog_table td {
-    border-bottom:    1px;
+    padding:          0px 0px 1px 0px;
 }
 
 table.techlog_table tr.odd {
