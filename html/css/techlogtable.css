@@ -44,7 +44,7 @@ table.techlog_table th {
 }
 
 table.techlog_table td {
-    padding:          1px 2px 1px 2px;
+    padding:          1px;
 }
 
 table.techlog_table tr.odd {
