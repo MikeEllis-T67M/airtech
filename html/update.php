@@ -76,6 +76,9 @@ require 'include/db_params.inc';
         <div id="main" class="content">
         
 <?php
+          require 'include/calc_airframe_hours.inc';
+          calculate_airframe_hours('G-BNSR');
+
           // Get some data from the database
           require 'include/techlog.inc';
 
@@ -83,9 +86,6 @@ require 'include/db_params.inc';
           print_techlog("G-BNSR", "Jun 2006");
           print_techlog("G-BNSR", "May 2006", "MikeE");
           
-          require 'include/calc_airframe_hours.inc';
-          
-          //calculate_airframe_hours('G-BNSR');
 ?>
 
         </div>

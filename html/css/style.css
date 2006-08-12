@@ -74,11 +74,17 @@ a:active {
 }
 
 /* Class definitions for the techlog table */
+/*
 .techlog {
     font-family:      arial, helvetica, sans-serif;
     border-spacing:   0px;
     font-size:        10pt;
-    width:            100%;
+    width:            99%;
+    margin:           0px;
+    padding:          0px;
+}
+
+.techlog tr {
 }
 
 .techlog th {
@@ -96,3 +102,10 @@ a:active {
 .techlog .odd {
     background-color: #FFFFA0;
 }
+
+.techlog>tbody {
+    overflow:         auto;
+    overflow-x:       hidden;
+    height:           300px;
+}
+*/

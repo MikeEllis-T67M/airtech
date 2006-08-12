@@ -2,6 +2,7 @@
 // All scripts should start with this to ensure that the database is
 // connected and the user is authenticated
 require 'include/db_params.inc';
+require 'include/convert_time.inc';
 
 function print_techlog($aircraft, $month, $chargee)
 {
@@ -15,6 +16,7 @@ function print_techlog($aircraft, $month, $chargee)
                    TIME_FORMAT(TIMEDIFF(Landing, Takeoff), '%k:%i') AS FlightTime,
                    StartTach,
                    EndTach,
+                   EndAirframeHours,
                    Departure,
                    Arrival,
                    PIC,
@@ -33,8 +35,6 @@ function print_techlog($aircraft, $month, $chargee)
     echo $chargee . " in ";
     $sql .= "AND ( Charge1 = '" . $chargee . "' OR Charge2 = '" . $chargee . "') ";
   }
-  
-  echo $aircraft;
 
   if ($month != null)
   {
@@ -47,24 +47,31 @@ function print_techlog($aircraft, $month, $chargee)
   $sql .= "ORDER BY Takeoff";
 
   // Execute the query and put results in $result
-  $result = mysql_query($sql)
+  $flight_list = mysql_query($sql)
   or die ('Unable to execute query - '.$sql.' Error is' . mysql_error());
 
-  echo "<TABLE CLASS=\"techlog\">\n";
-  echo "<TR><TH>Flight details</TH><TH>Flight times</TH><TH>Tach times</TH><TH>Pilot</TH><TH>Pax</TH><TH>Payment</TH><TH>Notes</TH></TR>\n";
-
+  echo "<DIV CLASS=\"techlog\">\n";
+  echo "<TABLE CLASS=\"techlog_table\" cellpadding=\"0\" cellspacing=\"0\">\n";
+  echo "<THEAD CLASS=\"techlog_fixed\">\n";
+  echo "<TR>";
+  echo "<TH>Flight details</TH><TH>Flight times</TH><TH>Airframe</TH>";
+  echo "<TH>Tach</TH><TH>Pilot</TH><TH>Pax</TH><TH>Payment</TH><TH>Notes</TH>";
+  echo "</TR>\n";
+  echo "</THEAD>\n";
+  echo "<TBODY CLASS=\"techlog_scrolling\">\n";
+  
   $oddeven   = "odd";
   $last_date = "";
 
   // Write each flight out one row at a time
-  while ($flight = mysql_fetch_assoc($result))
+  while ($flight = mysql_fetch_assoc($flight_list))
   {
     // Alternate the row class as the date changes to given alternate-line greying
     if ($flight['TODate'] != $last_date)
     {
       $last_date = $flight['TODate'];
       if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-      echo "<TR class=\"" . $oddeven . "\"><TH colspan=7>". $flight['TODate'] . "</TH></TR>\n";
+      echo "<TR class=\"" . $oddeven . "\"><TH colspan=8>". $flight['TODate'] . "</TH></TR>\n";
     }
     echo "<TR class=\"" . $oddeven . "\">";
 
@@ -80,19 +87,26 @@ function print_techlog($aircraft, $month, $chargee)
     {
       echo "<TD>" . $flight['Departure'] . " &ndash; " . $flight['Arrival'] . "</TD>";
     }
+    
+    // Takeoff and landing times
     echo "<TD>" . $flight['TOTime'] . " &ndash; "
-         . $flight['LdgTime']
-         . " (" . $flight['FlightTime'] . ")</TD>";
+         . $flight['LdgTime'] . "</TD>";
 
+    // Airframe hours
+    printf("<TD>%s (%s)</TD>",
+           format_HMM($flight['EndAirframeHours']),
+           $flight['FlightTime']);
+    
     // Engine details
-    echo "<TD>" . number_format($flight['StartTach'], 1) . " + "
-                . number_format($flight['EndTach'] -
-                               $flight['StartTach'], 1) . "</TD>";
+    printf("<TD>%s (%s)</TD>",
+           number_format($flight['EndTach'], 1),
+           number_format($flight['EndTach'] - $flight['StartTach'], 1));
 
-    // Pilot in command
+    // Pilot in command and passenger
     echo "<TD>" . $flight['PIC'] . "</TD>";
     echo "<TD>" . $flight['Pax'] . "</TD>";
     
+    // Charging info
     if ($flight['Charge2'] == null)
     {
       echo "<TD>" . $flight['Charge1'] . " </TD>";
@@ -108,7 +122,13 @@ function print_techlog($aircraft, $month, $chargee)
     // End of row
     echo "</TR>\n";
   }
-
+  
+  // End of table
+  echo "</TBODY>\n";
   echo "</TABLE>\n";
+  echo "</DIV>\n";
+  
+  // Free up the memory
+  mysql_free_result($flight_list);
 }
 ?>
