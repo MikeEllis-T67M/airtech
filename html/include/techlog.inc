@@ -58,8 +58,8 @@ function print_techlog($aircraft, $month, $chargee)
   echo "<TABLE CLASS=\"techlog_table\" cellpadding=\"0\" cellspacing=\"0\">\n";
   echo "<THEAD CLASS=\"techlog_fixed\">\n";
   echo "<TR>";
-  echo "<TH>Flight details</TH><TH>Flight times</TH><TH>Airframe</TH>";
-  echo "<TH>Tach</TH><TH>Cycles</TH><TH>Pilot/Pax</TH><TH>Payment</TH><TH>Notes</TH>";
+  echo "<TH>Detail</TH><TH>Time</TH><TH>Airframe</TH>";
+  echo "<TH>Tach</TH><TH>Cycles</TH><TH>Pilot / Pax</TH><TH>Payment</TH><TH>Notes</TH>";
   echo "</TR>\n";
   echo "</THEAD>\n";
   echo "<TBODY CLASS=\"techlog_scrolling\">\n";
