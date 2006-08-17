@@ -11,3 +11,8 @@
     width:      100%;
     float:      none;
 }
+
+/* Class definition for the borders */
+.bordered {
+    border:           none;
+}
