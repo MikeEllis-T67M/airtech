@@ -13,12 +13,3 @@
 #layout_right {
     width:        100%;
 }
-
-/* The tech log table itself */
-div.techlog {
-	height:           auto; /* To override the scrolling in IE */
-}
-
-table.techlog_table tbody {
-	height:           auto; /* To override the scrolling in non-IE browsers */
-}

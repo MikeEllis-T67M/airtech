@@ -12,8 +12,9 @@ require 'include/db_params.inc';
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" media="all" href="css/layout.css">
   <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
-  <link rel="stylesheet" type="text/css" media="all" href="css/techlogtable.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/techlogtable.css">
   <link rel="stylesheet" type="text/css" media="print" href="css/print.css">
+  <link rel="stylesheet" type="text/css" media="print" href="css/techlogtable_print.css">
 
   <script type="text/javascript" src="ruzee/cssquery2-p.js"></script>
   <script type="text/javascript" src="ruzee/ruzeeborders.js"></script>

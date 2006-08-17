@@ -1,0 +1,47 @@
+/* CSS for a table with a frozen header */
+div.techlog {
+	width:            100%;
+}
+
+/* define width and style of table */
+table.techlog_table {
+	width:            100%;
+}
+
+/* Set table header to a fixed position - needed to work around a bug in IE */
+table.techlog_table thead th {
+    position:         relative;
+	background-color: yellow;
+}
+
+/* Should work for all browsers, but IE fails */
+table.techlog_table tbody {
+}
+
+/* General table styling only from here on */
+table.techlog_table {
+    font-family:      arial, helvetica, sans-serif;
+    font-size:        9pt;
+	text-align:       center;
+	border:           none;
+    border-spacing:   0px;
+    padding:          0px;
+}
+
+table.techlog_table th {
+    font-weight:      bold;
+    font-size:        11pt;
+    padding:          2px;
+}
+
+table.techlog_table td {
+    padding:          1px;
+}
+
+table.techlog_table tr.odd {
+    background-color: #FFFFA0;
+}
+
+table.techlog_table tr.even {
+	background:       yellow;
+}
