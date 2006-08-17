@@ -1,0 +1,24 @@
+/* Printer page layout */
+
+/* The strap across the top of the page, including the border */
+#layout_top {
+}
+
+/* The left hand navigation pane, including the border */
+#layout_left {
+    visibility: hidden;
+}
+
+/* The right hand navigation pane, including the border */
+#layout_right {
+    width:        100%;
+}
+
+/* The tech log table itself */
+div.techlog {
+	height:           auto; /* To override the scrolling in IE */
+}
+
+table.techlog_table tbody {
+	height:           auto; /* To override the scrolling in non-IE browsers */
+}
