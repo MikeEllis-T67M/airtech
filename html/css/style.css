@@ -59,7 +59,7 @@ a:active {
 
 /* Class definition for the borders */
 .bordered {
-/*  border:           3px black solid; */
+    border:           3px black solid;
     padding:          20px;
     color:            black;
     background-color: yellow;
