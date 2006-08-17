@@ -12,11 +12,19 @@
     float:      none;
 }
 
-/* Class definition for the borders */
+.center10 {
+    overflow:   show;
+}
+
 .bordered {
     border:     none;
 }
 
 .content {
     overflow:   show;
+}
+
+* {
+    overflow:          show;
+    page-break-inside: auto;
 }
