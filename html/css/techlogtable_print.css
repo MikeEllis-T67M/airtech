@@ -16,6 +16,7 @@ table.techlog_table thead th {
 
 /* Should work for all browsers, but IE fails */
 table.techlog_table tbody {
+    page-break-inside: auto;
 }
 
 /* General table styling only from here on */
