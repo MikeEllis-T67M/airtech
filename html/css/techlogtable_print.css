@@ -8,13 +8,7 @@ table.techlog_table {
 	width:            100%;
 }
 
-/* Set table header to a fixed position - needed to work around a bug in IE */
-table.techlog_table thead th {
-    position:         relative;
-	background-color: yellow;
-}
-
-/* Should work for all browsers, but IE fails */
+/* Make sure the browser knows it is allowed to break this table */
 table.techlog_table tbody {
     page-break-inside: auto;
 }
