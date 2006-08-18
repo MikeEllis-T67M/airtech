@@ -29,6 +29,10 @@ table.techlog_table {
     padding:          0px;
 }
 
+table.tachlog_table tr {
+    page-break-inside: avoid;
+}
+
 table.techlog_table th {
     page-break-before: auto;
     font-weight:       bold;
