@@ -9,9 +9,14 @@ table.techlog_table {
 	page-break-inside: auto;
 }
 
+table.techlog_table thead {
+    display:           table-header-group;
+}
+
 /* Make sure the browser knows it is allowed to break this table */
 table.techlog_table tbody {
     page-break-inside: auto;
+    display:           table-row-group;
 }
 
 /* General table styling only from here on */
