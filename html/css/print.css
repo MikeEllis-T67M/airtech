@@ -2,7 +2,7 @@
 
 /* The left hand navigation pane, including the border */
 #layout_left {
-    visibility: hidden;
+    display:    none;
     float:      none;
 }
 
