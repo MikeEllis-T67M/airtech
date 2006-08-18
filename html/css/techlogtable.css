@@ -37,6 +37,10 @@ table.techlog_table {
     padding:          0px;
 }
 
+table.techlog_table tr {
+    height:           auto;
+}
+
 table.techlog_table th {
     font-weight:      bold;
     font-size:        11pt;
