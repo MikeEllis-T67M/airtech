@@ -6,6 +6,7 @@ div.techlog {
 /* define width and style of table */
 table.techlog_table {
 	width:            100%;
+	page-break-inside: auto;
 }
 
 /* Make sure the browser knows it is allowed to break this table */
