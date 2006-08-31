@@ -23,8 +23,6 @@ function print_techlog($aircraft, $month, $chargee)
                    TouchAndGoes,
                    PIC,
                    Pax,
-                   Charge1,
-                   Charge2,
                    Notes,
                    DATE_FORMAT(Takeoff, '%Y%c%d%H%i%s')            AS Pkey
           FROM     Flights
@@ -35,7 +33,7 @@ function print_techlog($aircraft, $month, $chargee)
   if ($chargee != null)
   {
     echo $chargee . " in ";
-    $sql .= "AND ( Charge1 = '" . $chargee . "' OR Charge2 = '" . $chargee . "') ";
+    // This SQL is no longer valid $sql .= "AND ( Charge1 = '" . $chargee . "' OR Charge2 = '" . $chargee . "') ";
   }
 
   echo $aircraft;
@@ -59,7 +57,7 @@ function print_techlog($aircraft, $month, $chargee)
   echo "<THEAD CLASS=\"techlog_fixed\">\n";
   echo "<TR>";
   echo "<TH>Detail</TH><TH>Time</TH><TH>Airframe</TH>";
-  echo "<TH>Tach</TH><TH>Cycles</TH><TH>Pilot / Pax</TH><TH>Payment</TH><TH>Notes</TH>";
+  echo "<TH>Tach</TH><TH>Cycles</TH><TH>Pilot / Pax</TH><TH>Notes</TH>";
   echo "</TR>\n";
   echo "</THEAD>\n";
   echo "<TBODY CLASS=\"techlog_scrolling\">\n";
@@ -75,7 +73,7 @@ function print_techlog($aircraft, $month, $chargee)
     {
       $last_date = $flight['TODate'];
       if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-      echo "<TR class=\"" . $oddeven . "\"><TH colspan=8>". $flight['TODate'] . "</TH></TR>\n";
+      echo "<TR class=\"" . $oddeven . "\"><TH colspan=7>". $flight['TODate'] . "</TH></TR>\n";
     }
     echo "<TR class=\"" . $oddeven . "\">";
 
@@ -115,16 +113,6 @@ function print_techlog($aircraft, $month, $chargee)
     echo "<TD>" . $flight['PIC'];
     if ($flight['Pax'] != "") echo "/" . $flight['Pax'];
     echo "</TD>";
-    
-    // Charging info
-    if ($flight['Charge2'] == null)
-    {
-      echo "<TD>" . $flight['Charge1'] . " </TD>";
-    }
-    else
-    {
-      echo "<TD>" . $flight['Charge1'] . "/" . $flight['Charge2'] . " </TD>";
-    }
     
     // Notes
     echo "<TD>" . $flight['Notes'] . " </TD>";
