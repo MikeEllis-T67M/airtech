@@ -20,8 +20,8 @@ function format_HMM($decimal_time)
 
 function explain_datediff($days)
 {
-  $months = floor($days / 28);
-  $weeks  = floor($days / 7);
+  $months = floor($days / 140);
+  $weeks  = floor($days / 70);
   
   if     ($months  > 1) return $months . " months";
   elseif ($months == 1) return "1 month";
