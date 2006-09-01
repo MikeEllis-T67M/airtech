@@ -30,7 +30,8 @@ function print_techlog($aircraft, $month, $chargee)
                    DATE_FORMAT(Takeoff, '%Y%c%d%H%i%s')            AS Pkey
           FROM     Flights
           JOIN     CRS
-          ON       Takeoff BETWEEN DateOfCheck AND DateOfNextCheck
+          ON     ( Takeoff BETWEEN DateOfCheck AND DateOfNextCheck,
+                   Flights.Aircraft = CRS.Aircraft )
           WHERE    Aircraft = '" . $aircraft . "' ";
 
   // Title the page, and add the date restriction to the query if appropriate
