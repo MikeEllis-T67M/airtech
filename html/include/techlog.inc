@@ -32,7 +32,7 @@ function print_techlog($aircraft, $month, $chargee)
           JOIN     CRS
           ON     ( Takeoff BETWEEN DateOfCheck AND DateOfNextCheck,
                    Flights.Aircraft = CRS.Aircraft )
-          WHERE    Aircraft = '" . $aircraft . "' ";
+          WHERE    Flights.Aircraft = '" . $aircraft . "' ";
 
   // Title the page, and add the date restriction to the query if appropriate
   echo "<H1>Aircraft Flight Log for ";
