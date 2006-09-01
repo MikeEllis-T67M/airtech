@@ -18,4 +18,19 @@ function format_HMM($decimal_time)
     return $pretty_time;
 }
 
+function explain_datediff($days)
+{
+  $months = $days / 28;
+  $weeks  = $days / 7;
+  
+  if     ($months  > 1) return $months . " months";
+  elseif ($months == 1) return "1 month";
+  elseif ($weeks   > 1) return $weeks . " weeks";
+  elseif ($weeks  == 1) return "1 week";
+  elseif ($days    > 1) return $days . " days";
+  elseif ($days   == 1) return "tomorrow";
+  elseif ($days   == 0) return "today";
+  else                  return "overdue";
+}
+
 ?>

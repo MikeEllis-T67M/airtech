@@ -122,9 +122,9 @@ function print_techlog($aircraft, $month, $chargee)
     echo $flight['Landings'] . "</TD>";
     
     // Hours and days to check
-    printf("<TD>%s / %d</TD>",
+    printf("<TD>%s / %s</TD>",
            $flight['HoursToCheck'],
-           $flight['DaysToCheck']);
+           explain_datediff($flight['DaysToCheck']));
            
     // Pilot in command and passenger
     echo "<TD>" . $flight['PIC'];
