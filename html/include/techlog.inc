@@ -30,7 +30,7 @@ function print_techlog($aircraft, $month, $chargee)
                    DATE_FORMAT(Takeoff, '%Y%c%d%H%i%s')            AS Pkey
           FROM     Flights
           JOIN     CRS
-          ON     (     Takeoff BETWEEN DateOfCheck AND DateOfNextCheck
+          ON     (     Takeoff BETWEEN DateOfCheck AND CRSExpiry
                    AND Flights.Aircraft = CRS.Aircraft )
           WHERE    Flights.Aircraft = '" . $aircraft . "' ";
 
@@ -122,7 +122,7 @@ function print_techlog($aircraft, $month, $chargee)
     echo $flight['Landings'] . "</TD>";
     
     // Hours and days to check
-    printf("<TD>%s hours/%d days</TD>",
+    printf("<TD>%s / %d</TD>",
            $flight['HoursToCheck'],
            $flight['DaysToCheck']);
            
