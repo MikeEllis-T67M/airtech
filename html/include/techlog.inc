@@ -24,8 +24,13 @@ function print_techlog($aircraft, $month, $chargee)
                    PIC,
                    Pax,
                    Notes,
+                   TO_DAYS(DateOfNextCheck) - TO_DAYS(Takeoff)     AS DaysToCheck,
+                   TIME_FORMAT(SEC_TO_TIME((HoursAtNextCheck - EndAirframeHours)*3600), '%H:%i')
+                                                                   AS HoursToCheck,
                    DATE_FORMAT(Takeoff, '%Y%c%d%H%i%s')            AS Pkey
           FROM     Flights
+          JOIN     CRS
+          ON       Takeoff BETWEEN DateOfCheck AND DateOfNextCheck
           WHERE    Aircraft = '" . $aircraft . "' ";
 
   // Title the page, and add the date restriction to the query if appropriate
@@ -56,8 +61,14 @@ function print_techlog($aircraft, $month, $chargee)
   echo "<TABLE CLASS=\"techlog_table\" cellpadding=\"0\" cellspacing=\"0\">\n";
   echo "<THEAD CLASS=\"techlog_fixed\">\n";
   echo "<TR>";
-  echo "<TH>Detail</TH><TH>Time</TH><TH>Airframe</TH>";
-  echo "<TH>Tach</TH><TH>Cycles</TH><TH>Pilot / Pax</TH><TH>Notes</TH>";
+  echo "<TH>Detail</TH>";
+  echo "<TH>Time</TH>";
+  echo "<TH>Airframe</TH>";
+  echo "<TH>Tach</TH>";
+  echo "<TH>Cycles</TH>";
+  echo "<TH>Hours/Days to check</TH>";
+  echo "<TH>Pilot / Pax</TH>";
+  echo "<TH>Notes</TH>";
   echo "</TR>\n";
   echo "</THEAD>\n";
   echo "<TBODY CLASS=\"techlog_scrolling\">\n";
@@ -73,7 +84,7 @@ function print_techlog($aircraft, $month, $chargee)
     {
       $last_date = $flight['TODate'];
       if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-      echo "<TR class=\"" . $oddeven . "\"><TH colspan=7>". $flight['TODate'] . "</TH></TR>\n";
+      echo "<TR class=\"" . $oddeven . "\"><TH colspan=8>". $flight['TODate'] . "</TH></TR>\n";
     }
     echo "<TR class=\"" . $oddeven . "\">";
 
@@ -109,6 +120,11 @@ function print_techlog($aircraft, $month, $chargee)
     if ($flight['TouchAndGoes'] > 0) echo $flight['TouchAndGoes'] . "+";
     echo $flight['Landings'] . "</TD>";
     
+    // Hours and days to check
+    printf("<TD>%s hours/%d days</TD>",
+           $flight['HoursToCheck'],
+           $flight['DaysToCheck']);
+           
     // Pilot in command and passenger
     echo "<TD>" . $flight['PIC'];
     if ($flight['Pax'] != "") echo "/" . $flight['Pax'];
