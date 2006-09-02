@@ -85,7 +85,7 @@ function print_techlog($aircraft, $month, $chargee)
     {
       $last_date = $flight['TODate'];
       if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-      echo "<TR class=\"" . $oddeven . "\"><TH colspan=8>". $flight['TODate'] . "</TH></TR>\n";
+      echo "<TR class=\"" . $oddeven . "\"><TH colspan=8><H2>". $flight['TODate'] . "</H2></TH></TR>\n";
     }
     echo "<TR class=\"" . $oddeven . "\">";
 

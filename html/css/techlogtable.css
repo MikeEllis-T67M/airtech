@@ -47,6 +47,9 @@ table.techlog_table th {
     padding:          2px;
 }
 
+table.techlog_table th h2 {
+}
+
 table.techlog_table td {
     padding:          1px;
 }
