@@ -117,6 +117,10 @@ function calculate_airframe_hours($aircraft)
              $flight['Duration'],
              format_HMM($afhours),
              format_HMM($flight['EndAirframeHours']));
+             
+      // Continue counting hours based on the value in the database
+      $afhours = $flight['EndAirframeHours'];
+      
     }
   }
   

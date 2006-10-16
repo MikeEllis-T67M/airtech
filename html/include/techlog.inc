@@ -9,30 +9,30 @@ function print_techlog($aircraft, $month, $chargee)
   // Get some data from the database
   $aircraft = "G-BNSR";
 
-  $sql = "SELECT   DATE_FORMAT(Takeoff, '%a, %D %b %Y')             AS TODate,
-                   DATE_FORMAT(Landing, '%a, %D %b %Y')             AS LdgDate,
-                   DATE_FORMAT(Takeoff, '%H:%i')                    AS TOTime,
-                   DATE_FORMAT(Landing, '%H:%i')                    AS LdgTime,
-                   TIME_FORMAT(TIMEDIFF(Landing, Takeoff), '%k:%i') AS FlightTime,
-                   StartTach,
-                   EndTach,
-                   EndAirframeHours,
-                   Departure,
-                   Arrival,
-                   Landings,
-                   TouchAndGoes,
-                   PIC,
-                   Pax,
-                   Notes,
-                   TO_DAYS(DateOfNextCheck) - TO_DAYS(Takeoff)     AS DaysToCheck,
-                   TIME_FORMAT(SEC_TO_TIME((HoursAtNextCheck - EndAirframeHours)*3600), '%H:%i')
-                                                                   AS HoursToCheck,
-                   DATE_FORMAT(Takeoff, '%Y%c%d%H%i%s')            AS Pkey
-          FROM     Flights
-          JOIN     CRS
-          ON     (     Takeoff BETWEEN DateOfCheck AND CRSExpiry
-                   AND Flights.Aircraft = CRS.Aircraft )
-          WHERE    Flights.Aircraft = '" . $aircraft . "' ";
+  $sql = "SELECT   DATE_FORMAT(F.Takeoff, '%a, %D %b %Y')               AS TODate,
+                   DATE_FORMAT(F.Landing, '%a, %D %b %Y')               AS LdgDate,
+                   DATE_FORMAT(F.Takeoff, '%H:%i')                      AS TOTime,
+                   DATE_FORMAT(F.Landing, '%H:%i')                      AS LdgTime,
+                   TIME_FORMAT(TIMEDIFF(F.Landing, F.Takeoff), '%k:%i') AS FlightTime,
+                   F.StartTach,
+                   F.EndTach,
+                   F.EndAirframeHours,
+                   F.Departure,
+                   F.Arrival,
+                   F.Landings,
+                   F.TouchAndGoes,
+                   F.PIC,
+                   F.Pax,
+                   F.Notes,
+                   TO_DAYS(C.DateOfNextCheck) - TO_DAYS(F.Takeoff)     AS DaysToCheck,
+                   TIME_FORMAT(SEC_TO_TIME((C.HoursAtNextCheck - F.EndAirframeHours)*3600), '%H:%i')
+                                                                       AS HoursToCheck,
+                   DATE_FORMAT(F.Takeoff, '%Y%c%d%H%i%s')            AS Pkey
+          FROM     Flights AS F
+          JOIN     CRS     AS C
+          ON     (   F.Takeoff BETWEEN C.DateOfCheck AND C.CRSExpiry
+                   AND F.Aircraft = C.Aircraft )
+          WHERE    F.Aircraft = '" . $aircraft . "' ";
 
   // Title the page, and add the date restriction to the query if appropriate
   echo "<H1>Aircraft Flight Log for ";
@@ -67,9 +67,8 @@ function print_techlog($aircraft, $month, $chargee)
   echo "<TH>Airframe</TH>";
   echo "<TH>Tach</TH>";
   echo "<TH>Cycles</TH>";
-  echo "<TH>Hours/Days to check</TH>";
-  echo "<TH>Pilot / Pax</TH>";
-  echo "<TH>Notes</TH>";
+  echo "<TH>Hours / Days<BR>to check</TH>";
+  echo "<TH>Pilot / Pax<BR>Notes</TH>";
   echo "</TR>\n";
   echo "</THEAD>\n";
   echo "<TBODY CLASS=\"techlog_scrolling\">\n";
@@ -85,7 +84,7 @@ function print_techlog($aircraft, $month, $chargee)
     {
       $last_date = $flight['TODate'];
       if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-      echo "<TR class=\"" . $oddeven . "\"><TH colspan=8><H2>". $flight['TODate'] . "</H2></TH></TR>\n";
+      echo "<TR class=\"" . $oddeven . "\"><TH colspan=7><H2>". $flight['TODate'] . "</H2></TH></TR>\n";
     }
     echo "<TR class=\"" . $oddeven . "\">";
 
@@ -126,14 +125,12 @@ function print_techlog($aircraft, $month, $chargee)
            $flight['HoursToCheck'],
            explain_datediff($flight['DaysToCheck']));
            
-    // Pilot in command and passenger
+    // Pilot in command and passenger, notes on second line
     echo "<TD>" . $flight['PIC'];
-    if ($flight['Pax'] != "") echo "/" . $flight['Pax'];
+    if ($flight['Pax']   != "") echo "/" . $flight['Pax'];
+    if ($flight['Notes'] != "") echo "<BR>" . $flight['Notes'];
     echo "</TD>";
     
-    // Notes
-    echo "<TD>" . $flight['Notes'] . " </TD>";
-
     // End of row
     echo "</TR>\n";
   }
