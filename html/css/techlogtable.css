@@ -61,3 +61,8 @@ table.techlog_table tr.odd {
 table.techlog_table tr.even {
 	background:       yellow;
 }
+
+table.techlog_table tr.total {
+    font-weight:      bold;
+    font-size:        14pt;
+}

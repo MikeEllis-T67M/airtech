@@ -80,7 +80,7 @@ require 'include/db_params.inc';
 <?php
   // Get some data from the database
   require 'include/bills.inc';
-  display_bill("G-BNSR", "Aug 06", "MikeE");
+  display_bill("G-BNSR", $_GET[date], $_GET[person]);
 ?>
 
         </div>
