@@ -2,16 +2,16 @@
 // All scripts should start with this to ensure that the database is
 // connected and the user is authenticated
 
-error_reporting(E_ALL);
-
 //require 'include/new_db_params.inc';
 require 'include/convert_time.inc';
 
-function display_bill($aircraft, $month, $chargee)
+function print_bill($page, $aircraft, $month, $chargee)
 {
+  error_reporting(E_ALL);
+
   // Title the page
-  printf("<H1>%s bill for %s in %s</H1>",
-         $aircraft, $chargee, $month);
+  //printf("<H1>%s bill for %s in %s</H1>",
+  //       $aircraft, $chargee, $month);
 
   // Connection information for the database
   $db_params['host']     = 'localhost';
@@ -29,158 +29,152 @@ function display_bill($aircraft, $month, $chargee)
      printf("Connect failed: %s\n", mysqli_connect_error());
      exit();
   }
-  
-  // Begin the table - do the headers etc
-  echo "<DIV CLASS=\"techlog\">\n";
-  echo "<TABLE CLASS=\"techlog_table\" cellpadding=\"0\" cellspacing=\"0\">\n";
-  echo "<THEAD CLASS=\"techlog_fixed\">\n";
-  echo "<TR>";
-  echo "<TH>Date</TH>";
-  echo "<TH>Detail</TH>";
-  echo "<TH>Times</TH>";
-  echo "<TH>Flight time</TH>";
-  echo "<TH>Tach time</TH>";
-  echo "<TH>PIC / Pax</TH>";
-  echo "<TH>Notes</TH>";
-  echo "<TH>Flight Cost</TH>";
-  echo "</TR>\n";
-  echo "</THEAD>\n";
-  echo "<TBODY CLASS=\"techlog_scrolling\">\n";
 
   $oddeven    = "odd";
-  $last_date  = "";
   $total_cost = 0;
 
   // Get the data from the database
   $list_of_flights_sql = "
     SELECT
-      DATE_FORMAT(F.Takeoff, '%a %D')                      AS TODate,
-      DATE_FORMAT(F.Takeoff, '%H:%i')                      AS TOTime,
-      DATE_FORMAT(F.Landing, '%H:%i')                      AS LdgTime,
-      TIME_FORMAT(TIMEDIFF(F.Landing, F.Takeoff), '%k:%i') AS FlightTime,
-      F.EndTach - F.StartTach                              AS TachTime,
-      F.Departure,
-      F.Arrival,
-      F.PIC,
-      F.Pax,
-      F.Notes,
-      R.HourlyFee * (F.EndTach - F.StartTach) * FC.Proportion AS FlightCost,
+      DATE_FORMAT(F.Takeoff, '%a %D')                       AS BillTODate,
+      DATE_FORMAT(F.Takeoff, '%H:%i')                       AS BillTOTime,
+      DATE_FORMAT(F.Landing, '%H:%i')                       AS BillLdgTime,
+      TIME_FORMAT(TIMEDIFF(F.Landing, F.Takeoff), '%k:%i')  AS BillFlightTime,
+      F.EndTach - F.StartTach                               AS BillTachTime,
+      F.Departure                                           AS BillDeparture,
+      F.Arrival                                             AS BillArrival,
+      F.PIC                                                 AS BillPIC,
+      F.Pax                                                 AS BillPax,
+      F.Notes                                               AS BillNotes,
+      FORMAT(R.HourlyFee * (F.EndTach-F.StartTach) * FC.Proportion, 2)
+                                                            AS BillFlightCost,
       (
         SELECT
-          SUM(AC.Quantity * AR.Rate * FC.Proportion) AS AirfieldCharges
-        FROM
-          AirfieldCharges AS AC
-        LEFT JOIN
-          AirfieldRates AS AR ON (
-            AC.Aircraft = AR.Aircraft           AND
-            AC.Airfield = AR.Airfield           AND
-            AC.Activity = AR.Activity           AND
-            AC.Takeoff BETWEEN AR.StartDate AND AR.EndDate)
+          FORMAT(SUM(AC.Quantity * AR.Rate * FC.Proportion),2)
+        FROM      AirfieldCharges AS AC
+        LEFT JOIN AirfieldRates AS AR ON (
+          AC.Aircraft       = AR.Aircraft                 AND
+          AC.Airfield       = AR.Airfield                 AND
+          AC.Activity       = AR.Activity                 AND
+          AC.Takeoff  BETWEEN AR.StartDate AND AR.EndDate)
         WHERE
-          F.Aircraft = AC.Aircraft AND
+          F.Aircraft = AC.Aircraft                        AND
           F.Takeoff  = AC.Takeoff
-      ) AS Fees
-    FROM
-      Flights AS F
-    JOIN
-      FlightCharges as FC ON (
-        F.Takeoff  = FC.Takeoff             AND
-        F.Aircraft = FC.Aircraft)
-    JOIN
-      AircraftRates AS R ON (
-        FC.ChargeTo = R.Payer               AND
-        FC.Aircraft = R.Aircraft            AND
-        FC.Takeoff BETWEEN R.StartDate AND R.EndDate)
+      )                                                     AS BillAirfieldFees
+    FROM Flights AS F
+    JOIN FlightCharges AS FC ON (
+      F.Takeoff  = FC.Takeoff                             AND
+      F.Aircraft = FC.Aircraft)
+    JOIN AircraftRates AS R ON (
+      FC.ChargeTo       = R.Payer                         AND
+      FC.Aircraft       = R.Aircraft                      AND
+      FC.Takeoff  BETWEEN R.StartDate AND R.EndDate)
     WHERE
-      F.Aircraft                      = ?   AND
-      DATE_FORMAT(F.Takeoff, '%b %y') = ?   AND
+      F.Aircraft                      = ?                 AND
+      DATE_FORMAT(F.Takeoff, '%b %y') = ?                 AND
       FC.ChargeTo                     = ?
     ORDER BY F.Takeoff";
 
   // Prepare the SQL statement
   if ($list_of_flights = $mysqldb->prepare($list_of_flights_sql))
+    {
+      // Bind parameters to the markers
+      $list_of_flights->bind_param("sss", $aircraft, $month, $chargee);
+
+      // Execute the query
+      if (!$list_of_flights->execute())
+        printf("Execute failed: %s.\n", $mysqldn->error());
+
+      // Process the results one row at a time
+      while ($flight = mre_fetch_assoc($list_of_flights))
+        {
+          // Alternate the row class as the date
+          // changes to given alternate-line greying
+          if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
+
+          // Local, or two different airfields?
+          if ($flight['BillDeparture'] == $flight['BillArrival'])
+            $flight['BillDeparture'] .= " (local)";
+          else
+            $flight['BillDeparture'] .= " &ndash; " . $flight['BillArrival'];
+
+          // Was there a passenger?
+          if ($flight['BillPax'] != "")
+            $flight['BillPIC'] .= "/" . $flight['BillPax'];
+
+          // This could fail if we get bills above £1000
+          $total_cost += $flight['BillFlightCost'] + $flight['BillAirfieldFees'];
+          
+          // Display the row
+          $page->setCurrentBlock('BillRow');
+          $page->setVariable($flight);
+          $page->setVariable("bill_oddeven", $oddeven);
+          $page->parseCurrentBlock();
+        }
+
+      // Print the total cost
+      $total_cost = number_format($total_cost, 2);
+
+      $page->setCurrentBlock('BillSummary');
+      $page->setVariable("BillTotalCost", $total_cost);
+      $page->parseCurrentBlock();
+      
+      $page->parse('Bill');
+
+      // Free up the memory
+      $list_of_flights->close();
+    }
+}
+
+function mre_fetch_assoc(&$stmt)
+{
+  // Fetch the meta-data about this query
+  $meta = $stmt->result_metadata();
+
+  // Not sure what retval is for - seems to be an array which maps to the
+  // original statement we passed in - which wasn't an array...
+  $retval[] = &$stmt;
+
+  // tmp is used as a temporary store for the results, while names is the list
+  // of names for the columns
+  $tmp;
+  $names;
+
+  // Build up a list of all the field names
+  while ($field = $meta->fetch_field())
   {
-    // Bind parameters to the markers
-    $list_of_flights->bind_param("sss", $aircraft, $month, $chargee);
+    $names[] = $field->name;
+  }
 
-    // Execute the query
-    if (!$list_of_flights->execute()) {
-      printf("Execute failed: %s.\n", $mysqldn->error());
+  // Copy the list of field names... not sure why this is needed
+  $tmp = $names;
+
+  // Why is this not a foreach?
+  for ($c = 0; $c < count($names); $c++)
+  {
+    $retval[] = &$tmp[$c]; // Why is this a reference not a copy?
+  }
+
+  // Bind each name in turn into the retval array ??? Why can't we bind
+  // directly to the associative array just doing it one element at a time?
+  call_user_func_array("mysqli_stmt_bind_result", $retval);
+
+  // Fetch the next row of data from the database
+  if ($stmt->fetch())
+  {
+    // Copy each element from the bound "retval" array into the desired associative array
+    $assoc_array;
+    for ($c = 0; $c < count($names); $c++)
+    {
+      $assoc_array[$names[$c]] = $retval[$c + 1];
     }
 
-    // Tell PHP	where to put the results
-    if (!$list_of_flights->bind_result($TODate,
-                                       $TOTime,
-                                       $LdgTime,
-                                       $FlightTime,
-                                       $TachTime,
-                                       $Departure,
-                                       $Arrival,
-                                       $PIC,
-                                       $Pax,
-                                       $Notes,
-                                       $FlightCost,
-                                       $Fees)) {
-      printf("Result binding failed: %s.\n", $mysqldb->error());
-    }
-
-    // Process the results one row at a time
-    while ($list_of_flights->fetch())
-      {
-        // Alternate the row class as the date
-        // changes to given alternate-line greying
-        if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-        printf("<TR class=\"%s\">", $oddeven);
-
-        // Date
-        printf("<TD>%s</TD>", $TODate);
-
-        // Flight details
-        if ($Departure == $Arrival) {
-          printf("<TD>%s (local)</TD>", $Departure);
-        } else {
-          printf("<TD>%s &ndash; %s</TD>",
-                 $Departure, $Arrival);
-        }
-    
-        // Takeoff and landing times
-        printf("<TD>%s &ndash; %s</TD>",
-               $TOTime, $LdgTime);
-
-        // Flight time
-        printf("<TD>%s</TD>", $FlightTime);
-
-        // Tach time
-        printf("<TD>%3.1f</TD>", $TachTime);
-
-        // Pilot in command and passenger
-        if ($Pax != "") {
-          printf("<TD>%s / %s</TD>", $PIC, $Pax);
-        } else {
-          printf("<TD>%s", $PIC);
-        }
-        
-        // Notes
-        printf("<TD>%s</TD>", $Notes);
-
-        // Charges
-        printf("<TD>£%5.2f + £%5.2f</TD>", $FlightCost, $Fees);
-        $total_cost += $FlightCost + $Fees;
-        
-        // End of row
-        echo "</TR>\n";
-      }
-    
-    // Print the total cost
-    printf("<TR class=\"total\"><TD COLSPAN=7 ALIGN=right>Total</TD><TD>£%5.2f</TD></TR>\n", $total_cost);
-    
-    // End of table
-    echo "</TBODY>\n";
-    echo "</TABLE>\n";
-    echo "</DIV>\n";
-
-    // Free up the memory
-    $list_of_flights->close();
+    return $assoc_array;
+  }
+  else
+  {
+    // No data returned - flag the end of data condition and bail out
+    return FALSE;
   }
 }
 ?>
