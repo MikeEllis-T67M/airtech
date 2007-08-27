@@ -33,7 +33,7 @@ function print_pilot_info()
   echo "<TH>Pilot</TH>";
   echo "<TH>Date range</TH>";
   echo "<TH># flights</TH>";
-  echo "<TH>Average duration</TH>";
+  echo "<TH>Total Time</TH>";
   echo "<TH>Fuel burn</TH>";
   echo "<TH>Tach hour ratio</TH>";
   echo "</TR>\n";
@@ -48,14 +48,15 @@ function print_pilot_info()
         PIC                                                 as Pilot,
         Aircraft                                            as Aircraft,
         count(*)                                            as NumFlights,
-        TIME_FORMAT(SEC_TO_TIME(avg(TIME_TO_SEC(TIMEDIFF(Landing, Takeoff)))), '%H:%i') as AvgDuration,
+        TIME_FORMAT(SEC_TO_TIME(sum(TIME_TO_SEC(TIMEDIFF(Landing, Takeoff)))), '%H:%i') as TotalTime,
         DATE_FORMAT(min(takeoff), '%D %b %Y')               as FirstFlight,
         DATE_FORMAT(max(landing), '%D %b %Y')               as LastFlight,
         avg((StartFuel - EndFuel) / (EndTach - StartTach))  as FuelBurn,
         avg((EndTach - StartTach) / TIME_TO_SEC(TIMEDIFF(Landing, Takeoff)) * 3600)   as TachRatio
     FROM
         Flights AS F
-    GROUP BY Aircraft, Pilot";
+    GROUP BY Aircraft, Pilot
+    ORDER BY TotalTime DESC";
 
   // Prepare the SQL statement
   if ($pilot_info = $mysqldb->prepare($pilot_info_sql))
@@ -69,7 +70,7 @@ function print_pilot_info()
     }
 
     // Tell PHP	where to put the results
-    if (!$pilot_info->bind_result($pilot, $aircraft, $flights, $duration, $first, $last, $fuel, $tach)) {
+    if (!$pilot_info->bind_result($pilot, $aircraft, $flights, $totaltime, $first, $last, $fuel, $tach)) {
       printf("Result binding failed: %s.\n", $mysqldb->error());
     }
 
@@ -93,10 +94,10 @@ function print_pilot_info()
         // # flights
         printf("<TD>%s</TD>", $flights);
 
-        // Average duration
-        printf("<TD>%s</TD>", $duration);
+        // Total time
+        printf("<TD>%s</TD>", $totaltime);
 
-        // Fuel burn
+        // Average fuel burn
         printf("<TD>%.1f</TD>", $fuel);
 
         // Tach hour ratio
