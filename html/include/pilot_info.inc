@@ -31,7 +31,6 @@ function print_pilot_info()
   echo "<TR>";
   echo "<TH>Aircraft</TH>";
   echo "<TH>Pilot</TH>";
-  echo "<TH>Flight type</TH>";
   echo "<TH>Date range</TH>";
   echo "<TH># flights</TH>";
   echo "<TH>Average duration</TH>";
@@ -48,7 +47,6 @@ function print_pilot_info()
     SELECT
         PIC                                                 as Pilot,
         Aircraft                                            as Aircraft,
-        FlightType                                          as FlightType,
         count(*)                                            as NumFlights,
         TIME_FORMAT(SEC_TO_TIME(avg(TIME_TO_SEC(TIMEDIFF(Landing, Takeoff)))), '%H:%i') as AvgDuration,
         DATE_FORMAT(min(takeoff), '%D %b %Y')               as FirstFlight,
@@ -57,7 +55,7 @@ function print_pilot_info()
         avg((EndTach - StartTach) / TIME_TO_SEC(TIMEDIFF(Landing, Takeoff)) * 3600)   as TachRatio
     FROM
         Flights AS F
-    GROUP BY Aircraft, Pilot, FlightType";
+    GROUP BY Aircraft, Pilot";
 
   // Prepare the SQL statement
   if ($pilot_info = $mysqldb->prepare($pilot_info_sql))
@@ -71,7 +69,7 @@ function print_pilot_info()
     }
 
     // Tell PHP	where to put the results
-    if (!$pilot_info->bind_result($pilot, $aircraft, $type, $flights, $duration, $first, $last, $fuel, $tach)) {
+    if (!$pilot_info->bind_result($pilot, $aircraft, $flights, $duration, $first, $last, $fuel, $tach)) {
       printf("Result binding failed: %s.\n", $mysqldb->error());
     }
 
@@ -88,9 +86,6 @@ function print_pilot_info()
 
         // Pilot
         printf("<TD>%s</TD>", $pilot);
-
-        // Flight type
-        printf("<TD>%s</TD>", $type);
 
         // Date range
         printf("<TD>%s &ndash; %s</TD>", $first, $last);
