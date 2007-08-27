@@ -31,6 +31,7 @@ function print_techlog($page, $aircraft, $month, $chargee)
           ON     (   F.Takeoff BETWEEN C.DateOfCheck AND C.CRSExpiry
                    AND F.Aircraft = C.Aircraft )
           WHERE    F.Aircraft = '" . $aircraft . "'
+          AND      C.Item     = 'Airframe'
           ORDER BY Takeoff";
 
   // Execute the query and put results in $result
