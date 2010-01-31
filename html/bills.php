@@ -12,7 +12,7 @@ require 'include/bills.inc';
 $page = new HTML_Template_ITX("templates/");
 $page->loadTemplatefile("main.tpl");
 
-print_bill($page, 'G-BNSR', $_GET[date], $_GET[person]);
+print_bill($page, 'G-BNSR', $_GET['date'], $_GET['person']);
 
 $page->show();
 ?>
