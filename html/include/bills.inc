@@ -32,47 +32,49 @@ function print_bill($page, $aircraft, $month, $chargee)
 
   $oddeven    = "odd";
   $total_cost = 0;
+  $total_tach = 0;
 
   // Get the data from the database
   $list_of_flights_sql = "
     SELECT
-      DATE_FORMAT(F.Takeoff, '%a %D')                       AS BillTODate,
+      DATE_FORMAT(F.Takeoff, '%a %D %b &rsquo;%y')          AS BillTODate,
       DATE_FORMAT(F.Takeoff, '%H:%i')                       AS BillTOTime,
       DATE_FORMAT(F.Landing, '%H:%i')                       AS BillLdgTime,
       TIME_FORMAT(TIMEDIFF(F.Landing, F.Takeoff), '%k:%i')  AS BillFlightTime,
-      F.EndTach - F.StartTach                               AS BillTachTime,
+      FORMAT(F.EndTach - F.StartTach, 1)                    AS BillTachTime,
       F.Departure                                           AS BillDeparture,
       F.Arrival                                             AS BillArrival,
       F.PIC                                                 AS BillPIC,
       F.Pax                                                 AS BillPax,
       F.Notes                                               AS BillNotes,
-      FORMAT(R.HourlyFee * (F.EndTach-F.StartTach) * FC.Proportion, 2)
-                                                            AS BillFlightCost,
+      (R.HourlyFee     * (F.EndTach - F.StartTach) +
+       (R.FlyingHourFee * TIME_TO_SEC(TIMEDIFF(F.Landing, F.Takeoff)) / 3600))
+                                       * FC.Proportion      AS BillFlightCost,
       (
         SELECT
-          FORMAT(SUM(AC.Quantity * AR.Rate * FC.Proportion),2)
-        FROM      AirfieldCharges AS AC
-        LEFT JOIN AirfieldRates AS AR ON (
-          AC.Aircraft       = AR.Aircraft                 AND
-          AC.Airfield       = AR.Airfield                 AND
-          AC.Activity       = AR.Activity                 AND
+          SUM(AC.Quantity * AR.Rate * FC.Proportion)
+        FROM      AirfieldCharges          AS AC
+        LEFT JOIN AirfieldRates            AS AR ON (
+          AC.Aircraft       = AR.Aircraft            AND
+          AC.Airfield       = AR.Airfield            AND
+          AC.Activity       = AR.Activity            AND
           AC.Takeoff  BETWEEN AR.StartDate AND AR.EndDate)
         WHERE
-          F.Aircraft = AC.Aircraft                        AND
-          F.Takeoff  = AC.Takeoff
+          F.Aircraft   = AC.Aircraft                 AND
+          F.Takeoff    = AC.Takeoff
       )                                                     AS BillAirfieldFees
-    FROM Flights AS F
-    JOIN FlightCharges AS FC ON (
-      F.Takeoff  = FC.Takeoff                             AND
-      F.Aircraft = FC.Aircraft)
-    JOIN AircraftRates AS R ON (
-      FC.ChargeTo       = R.Payer                         AND
-      FC.Aircraft       = R.Aircraft                      AND
-      FC.Takeoff  BETWEEN R.StartDate AND R.EndDate)
+    FROM Flights                       AS F
+    JOIN FlightCharges                 AS FC ON (
+      F.Takeoff        = FC.Takeoff                  AND
+      F.Aircraft       = FC.Aircraft)
+    JOIN AircraftRates                 AS R ON (
+      FC.ChargeTo      = R.Payer                     AND
+      FC.Aircraft      = R.Aircraft                  AND
+      FC.Takeoff BETWEEN R.StartDate AND R.EndDate)
     WHERE
-      F.Aircraft                      = ?                 AND
-      DATE_FORMAT(F.Takeoff, '%b %y') = ?                 AND
-      FC.ChargeTo                     = ?
+      F.Aircraft                      = ?            AND
+      ? IN (DATE_FORMAT(F.Takeoff, '%b %y'), 'All')  AND
+      ? IN (FC.ChargeTo, 'All')
     ORDER BY F.Takeoff";
 
   // Prepare the SQL statement
@@ -102,9 +104,18 @@ function print_bill($page, $aircraft, $month, $chargee)
           if ($flight['BillPax'] != "")
             $flight['BillPIC'] .= "/" . $flight['BillPax'];
 
-          // This could fail if we get bills above £1000
+          // Were there any notes?
+          if ($flight['BillNotes'] != "")
+            $flight['BillPIC'] .= "<BR/>". $flight['BillNotes'];
+            
+          // Keep a running total of the cost and tach time
           $total_cost += $flight['BillFlightCost'] + $flight['BillAirfieldFees'];
-          
+          $total_tach += $flight['BillTachTime'];
+
+          // Format all the numbers in a nice way
+          $flight['BillFlightCost']   = number_format($flight['BillFlightCost'],   2);
+          $flight['BillAirfieldFees'] = number_format($flight['BillAirfieldFees'], 2);
+
           // Display the row
           $page->setCurrentBlock('BillRow');
           $page->setVariable($flight);
@@ -114,9 +125,11 @@ function print_bill($page, $aircraft, $month, $chargee)
 
       // Print the total cost
       $total_cost = number_format($total_cost, 2);
+      $total_tach = number_format($total_tach, 1);
 
       $page->setCurrentBlock('BillSummary');
       $page->setVariable("BillTotalCost", $total_cost);
+      $page->setVariable("BillTotalTach", $total_tach);
       $page->parseCurrentBlock();
       
       $page->parse('Bill');
