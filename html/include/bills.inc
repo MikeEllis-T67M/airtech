@@ -105,8 +105,8 @@ function print_bill($page, $aircraft, $month, $chargee)
             $flight['BillPIC'] .= "/" . $flight['BillPax'];
 
           // Were there any notes?
-          if ($flight['BillNotes'] != "")
-            $flight['BillPIC'] .= "<BR/>". $flight['BillNotes'];
+          //if ($flight['BillNotes'] != "")
+          //  $flight['BillPIC'] .= "<BR/>". $flight['BillNotes'];
             
           // Keep a running total of the cost and tach time
           $total_cost += $flight['BillFlightCost'] + $flight['BillAirfieldFees'];
