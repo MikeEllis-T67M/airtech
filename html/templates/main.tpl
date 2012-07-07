@@ -13,24 +13,10 @@
   <LINK rel="stylesheet" type="text/css" media="print" href="css/techlogtable_print.css" />
   <LINK rel="stylesheet" type="text/css" media="print" href="css/print.css" />
 
-  <SCRIPT type="text/javascript" src="ruzee/cssquery2-p.js"></SCRIPT>
-  <SCRIPT type="text/javascript" src="ruzee/ruzeeborders.js"></SCRIPT>
   <SCRIPT type="text/javascript" src="scripts/dateSel.js"></SCRIPT>
 
-
-  <SCRIPT type="text/javascript"><!--
-    // add the border definitions
-    RUZEE.Borders.add({
-      ".bordered" : { borderType:"shadow", cornerRadius:10, shadowWidth:5 }
-    });
-
-    // perform the rendering when the document has been loaded completely
-    window.onload=function(){
-      RUZEE.Borders.render();
-    };
-    //-->
-  </SCRIPT>
 </HEAD>
+
 <BODY>
   <DIV id="layout_top">
     <DIV class="bordered">

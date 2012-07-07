@@ -1,30 +1,30 @@
 /* Background page style */
 body {
-    background-color: #FFFFA0;
-	color:            black;
+    background:            #ffffa0;
 }
 
 /* General text styles */
 h1, h2 {
-	font-family:      "Comic Sans MS", arial, helvetica, sans-serif;
-	font-style:       italic;
-	font-weight:      bold;
+  	font-family:      "Comic Sans MS", arial, helvetica, sans-serif;
+	  font-style:       italic;
+	  font-weight:      bold;
     padding:          0px;
     margin:           2px;
 }
 
 h1 {
-    font-size:        20pt;
+    font-size:        22pt;
     text-align:       center;
 }
 
 h2 {
-    font-size:        14pt;
+    font-size:        12pt;
 }
 
 p {
     padding:          0px;
     margin:           0px;
+    font-size:        10pt;
 }
 
 /* Text styles for specific portions of the page */
@@ -36,7 +36,7 @@ p {
 
 /* Link handling */
 a {
-	font-family:      arial, helvetica, sans-serif;
+	font-family:        arial, helvetica, sans-serif;
     font-weight:      normal;
     font-style:       normal;
     text-align:       center;
@@ -60,9 +60,11 @@ a:active {
 /* Class definition for the borders */
 .bordered {
     border:           3px black solid;
-    padding:          20px;
+    padding:          10px;
     color:            black;
     background-color: yellow;
+	border-radius:    15px;
+	margin:           10px;
 }
 
 /* Class definition for "content" - by keeping it separate from the
@@ -71,4 +73,13 @@ a:active {
  */
 .content {
     overflow:         hidden;
+}
+
+.errors {
+    color:            red;
+    font-size:        12pt;
+}
+
+input:focus, select:focus, textarea:focus {
+    background:       #FFFFA0;
 }
