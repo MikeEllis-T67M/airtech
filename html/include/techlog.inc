@@ -32,7 +32,7 @@ function print_techlog($page, $aircraft, $month, $chargee)
                    AND F.Aircraft = C.Aircraft )
           WHERE    F.Aircraft = '" . $aircraft . "'
           AND      C.Item     = 'Airframe'
-          ORDER BY Takeoff";
+          ORDER BY Takeoff DESC";
 
   // Execute the query and put results in $result
   $flight_list = mysql_query($sql)
