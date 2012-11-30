@@ -14,7 +14,6 @@
   <LINK rel="stylesheet" type="text/css" media="print" href="css/print.css" />
 
   <SCRIPT type="text/javascript" src="scripts/dateSel.js"></SCRIPT>
-
 </HEAD>
 
 <BODY>
@@ -78,6 +77,36 @@
           </TABLE>
           </DIV>
         <!-- END TechLogTable -->
+        <!-- BEGIN LogbookTable -->
+          <DIV CLASS="techlog">
+          <TABLE CLASS="techlog_table" cellpadding="0" cellspacing="0">
+            <THEAD CLASS="techlog_fixed">
+              <TR>
+                <TH>Date</TH>
+                <TH>Flights</TH>
+                <TH>Duration</TH>
+                <TH>Airframe</TH>
+                <TH>Engine</TH>
+                <TH>Prop</TH>
+                <TH>Hours to check</TH>
+              </TR>
+            </THEAD>
+            <TBODY CLASS="techlog_scrolling">
+              <!-- BEGIN LogbookRow -->
+              <TR class="{oddeven}">
+                <TD>{DateF}</TD>
+                <TD>{Flights}</TD>
+                <TD>{FlightTime}</TD>
+                <TD>{Airframe}</TD>
+                <TD>{Engine}</TD>
+                <TD>{Prop}</TD>
+                <TD>{HoursToRun}</TD>
+              </TR>
+              <!-- END LogbookRow -->
+            </TBODY>
+          </TABLE>
+          </DIV>
+        <!-- END LogbookTable -->
         <!-- BEGIN Bill -->
           <DIV CLASS="techlog">
           <TABLE CLASS="techlog_table" cellpadding="0" cellspacing="0">
