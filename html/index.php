@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 
 // Library includes
 require 'HTML/Template/ITX.php';
+ini_set('display_errors', 1);
 
 // Project includes
 require 'include/db_params.inc';
