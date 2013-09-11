@@ -59,7 +59,7 @@
             <TBODY CLASS="techlog_scrolling">
               <!-- BEGIN TechLogDate -->
               <TR class="{date_oddeven}">
-                <TH colspan=7><H2>{TODate}</H2></TH>
+                <TH colspan=7><H2>Date: {TODate}</H2></TH>
               </TR>
                 <!-- BEGIN TechLogRow -->
                 <TR class="{oddeven}">
