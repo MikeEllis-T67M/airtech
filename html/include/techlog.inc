@@ -50,7 +50,8 @@ function print_techlog($page, $aircraft, $month, $chargee)
       if ($last_date != "")
       {
         $page->setVariable("date_oddeven", $oddeven);
-        $page->parse('TechLogDate');
+		$page->setVariable($flight);
+		$page->parse('TechLogDate');
       }
 
       $last_date = $flight['TODate'];
