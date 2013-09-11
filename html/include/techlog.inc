@@ -50,7 +50,7 @@ function print_techlog($page, $aircraft, $month, $chargee)
       if ($last_date != "")
       {
         $page->setVariable("date_oddeven", $oddeven);
-		$page->setVariable($flight);
+		$page->setVariable("TODate", $flight['TODate']);
 		$page->parse('TechLogDate');
       }
 
@@ -88,6 +88,7 @@ function print_techlog($page, $aircraft, $month, $chargee)
   }
 
   $page->setVariable("date_oddeven", $oddeven);
+  $page->setVariable("TODate", $flight['TODate']);
   $page->parse('TechLogDate');
 
   // Free up the memory
