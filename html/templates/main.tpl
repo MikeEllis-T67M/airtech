@@ -61,7 +61,6 @@
               <TR class="{date_oddeven}">
                 <TH colspan=7><H2>{TODate}</H2></TH>
               </TR>
-			  <!-- END TechLogDate -->
               <!-- BEGIN TechLogRow -->
 			  <TR class="{oddeven}">
                 <TD>{Departure}</TD>
@@ -73,6 +72,7 @@
                 <TD>{PIC}<BR>{Notes}</TD>
               </TR>
               <!-- END TechLogRow -->
+			  <!-- END TechLogDate -->
             </TBODY>
           </TABLE>
           </DIV>
