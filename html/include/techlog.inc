@@ -47,14 +47,21 @@ function print_techlog($page, $aircraft, $month, $chargee)
     // Alternate the row class as the date changes to given alternate-line greying
     if ($flight['TODate'] != $last_date)
     {
-      if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-	  
-	  $page->setCurrentBlock('TechLogDate');
-      $page->setVariable("date_oddeven", $oddeven);
-	  $page->setVariable("TODate", $flight['TODate']);
-	  $page->parse('TechLogDate');
-      
+	
+	  // If we've already had some flights then make sure we display them and move on to the next lot
+      if ($last_date != "")
+      {
+		$page->setCurrentBlock('TechLogDate');
+        $page->setVariable("date_oddeven", $oddeven);
+		$page->setVariable("TODate", $flight['TODate']);
+		$page->parse('TechLogDate');
+      }
+
+	  // Update the date we're currently working on
       $last_date = $flight['TODate'];
+	  
+	  // Toggle the colour
+      if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
     }
     
     // Fudge the data into the correct formats
@@ -81,24 +88,17 @@ function print_techlog($page, $aircraft, $month, $chargee)
     
     // Display a row of flight information
     $page->setCurrentBlock('TechLogRow');
-    $page->setVariable("Departure",        $flight['Departure']);
-    $page->setVariable("TOTime",           $flight['TOTime']);
-    $page->setVariable("LdgTime",          $flight['LdgTime']);
-    $page->setVariable("EndAirframeHours", $flight['EndAirframeHours']);
-    $page->setVariable("FlightTime",       $flight['FlightTime']);
-    $page->setVariable("EndTach",          $flight['EndTach']);
-    $page->setVariable("EngineTime",       $flight['EngineTime']);
-    $page->setVariable("Landings",         $flight['Landings']);
-    $page->setVariable("HoursToCheck",     $flight['HoursToCheck']);
-    $page->setVariable("DaysToCheck",      $flight['DaysToCheck']);
-    $page->setVariable("PIC",              $flight['PIC']);
-    $page->setVariable("Notes",            $flight['Notes']);
+    $page->setVariable($flight);
     $page->setVariable("oddeven", $oddeven);
-    $page->parse('TechLogRow');
+    $page->parseCurrentBlock();
   }
 
-  $page->parse('TechLogTable');
-  
+  // The last block of flights won't have been displayed yet, so display them
+  $page->setCurrentBlock('TechLogDate');
+  $page->setVariable("date_oddeven", $oddeven);
+  $page->setVariable("TODate", $flight['TODate']);
+  $page->parse('TechLogDate');
+
   // Free up the memory
   mysql_free_result($flight_list);
 }
