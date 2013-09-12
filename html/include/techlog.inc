@@ -89,11 +89,6 @@ function print_techlog($page, $aircraft, $month, $chargee)
     $page->parseCurrentBlock();
   }
 
-  $page->setCurrentBlock('TechLogDate');
-  $page->setVariable("date_oddeven", $oddeven);
-  $page->setVariable("TODate", $flight['TODate']);
-  $page->parse('TechLogDate');
-
   // Free up the memory
   mysql_free_result($flight_list);
 }
