@@ -81,7 +81,18 @@ function print_techlog($page, $aircraft, $month, $chargee)
     
     // Display a row of flight information
     $page->setCurrentBlock('TechLogRow');
-    $page->setVariable($flight);
+    $page->setVariable("Departure",        $flight['Departure']);
+    $page->setVariable("TOTime",           $flight['TOTime']);
+    $page->setVariable("LdgTime",          $flight['LdgTime']);
+    $page->setVariable("EndAirframeHours", $flight['EndAirframeHours']);
+    $page->setVariable("FlightTime",       $flight['FlightTime']);
+    $page->setVariable("EndTach",          $flight['EndTach']);
+    $page->setVariable("EngineTime",       $flight['EngineTime']);
+    $page->setVariable("Landings",         $flight['Landings']);
+    $page->setVariable("HoursToCheck",     $flight['HoursToCheck']);
+    $page->setVariable("DaysToCheck",      $flight['DaysToCheck']);
+    $page->setVariable("PIC",              $flight['PIC']);
+    $page->setVariable("Notes",            $flight['Notes']);
     $page->setVariable("oddeven", $oddeven);
     $page->parse('TechLogRow');
   }
