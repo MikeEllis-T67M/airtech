@@ -53,8 +53,8 @@ function print_techlog($page, $aircraft, $month, $chargee)
 	  
 		$page->setCurrentBlock('TechLogDate');
         $page->setVariable("date_oddeven", $oddeven);
-		$page->setVariable("TODate", $flight['TODate']);
-		$page->parseCurrentBlock();
+		$page->setVariable($flight);
+		$page->parse('TechLogDate');
       }
 
       $last_date = $flight['TODate'];
@@ -86,7 +86,7 @@ function print_techlog($page, $aircraft, $month, $chargee)
     $page->setCurrentBlock('TechLogRow');
     $page->setVariable($flight);
     $page->setVariable("oddeven", $oddeven);
-    $page->parseCurrentBlock();
+    $page->parse('TechLogRow');
   }
 
   // Free up the memory
