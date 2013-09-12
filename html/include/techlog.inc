@@ -89,6 +89,8 @@ function print_techlog($page, $aircraft, $month, $chargee)
     $page->parse('TechLogRow');
   }
 
+  $page->parse('TechLogTable');
+  
   // Free up the memory
   mysql_free_result($flight_list);
 }
