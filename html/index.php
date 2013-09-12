@@ -11,7 +11,7 @@ require 'include/db_params.inc';
 require 'include/techlog.inc';
 
 // Initialise the templates library
-$page = new HTML_Template_ITX("templates/");
+$page = new HTML_Template_IT("templates/");
 $page->loadTemplatefile("main.tpl");
 
 print_techlog($page, 'G-BNSR', NULL, NULL);
