@@ -47,16 +47,13 @@ function print_techlog($page, $aircraft, $month, $chargee)
     // Alternate the row class as the date changes to given alternate-line greying
     if ($flight['TODate'] != $last_date)
     {
-      if ($last_date != "")
-      {
-	    if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
+      if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
 	  
-		$page->setCurrentBlock('TechLogDate');
-        $page->setVariable("date_oddeven", $oddeven);
-		$page->setVariable($flight);
-		$page->parse('TechLogDate');
-      }
-
+	  $page->setCurrentBlock('TechLogDate');
+      $page->setVariable("date_oddeven", $oddeven);
+	  $page->setVariable($flight);
+	  $page->parse('TechLogDate');
+    
       $last_date = $flight['TODate'];
     }
     
