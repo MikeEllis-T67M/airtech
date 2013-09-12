@@ -48,12 +48,12 @@ function print_techlog($page, $aircraft, $month, $chargee)
     if ($flight['TODate'] != $last_date)
     {
       if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-	  
+	  /*
 	  $page->setCurrentBlock('TechLogDate');
       $page->setVariable("date_oddeven", $oddeven);
 	  $page->setVariable($flight);
 	  $page->parse('TechLogDate');
-    
+      */
       $last_date = $flight['TODate'];
     }
     
