@@ -61,18 +61,18 @@
               <TR class="{date_oddeven}">
                 <TH colspan=7><H2>{TODate}</H2></TH>
               </TR>
-                <!-- BEGIN TechLogRow -->
-                <TR class="{oddeven}">
-                  <TD>{Departure}</TD>
-                  <TD>{TOTime} &ndash; {LdgTime}</TD>
-                  <TD>{EndAirframeHours} ({FlightTime})</TD>
-                  <TD>{EndTach} ({EngineTime})</TD>
-                  <TD>{Landings}</TD>
-                  <TD>{HoursToCheck} / {DaysToCheck}</TD>
-                  <TD>{PIC}<BR>{Notes}</TD>
-                </TR>
-                <!-- END TechLogRow -->
-              <!-- END TechLogDate -->
+			  <!-- END TechLogDate -->
+              <!-- BEGIN TechLogRow -->
+			  <TR class="{oddeven}">
+                <TD>{Departure}</TD>
+                <TD>{TOTime} &ndash; {LdgTime}</TD>
+                <TD>{EndAirframeHours} ({FlightTime})</TD>
+                <TD>{EndTach} ({EngineTime})</TD>
+                <TD>{Landings}</TD>
+                <TD>{HoursToCheck} / {DaysToCheck}</TD>
+                <TD>{PIC}<BR>{Notes}</TD>
+              </TR>
+              <!-- END TechLogRow -->
             </TBODY>
           </TABLE>
           </DIV>
