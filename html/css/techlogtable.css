@@ -30,11 +30,11 @@ table.techlog_table tbody {
 /* General table styling only from here on */
 table.techlog_table {
     font-family:      arial, helvetica, sans-serif;
-    font-size:        9pt;
+    font-size:        11pt;
 	text-align:       center;
 	border:           none;
     border-spacing:   0px;
-    padding:          0px;
+    padding:          2px;
 }
 
 table.techlog_table tr {
@@ -43,7 +43,7 @@ table.techlog_table tr {
 
 table.techlog_table th {
     font-weight:      bold;
-    font-size:        11pt;
+    font-size:        12pt;
     padding:          2px;
 }
 
