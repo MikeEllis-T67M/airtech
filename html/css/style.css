@@ -13,18 +13,18 @@ h1, h2 {
 }
 
 h1 {
-    font-size:        22pt;
+    font-size:        24pt;
     text-align:       center;
 }
 
 h2 {
-    font-size:        12pt;
+    font-size:        18pt;
 }
 
 p {
     padding:          0px;
     margin:           0px;
-    font-size:        10pt;
+    font-size:        12pt;
 }
 
 /* Text styles for specific portions of the page */
