@@ -5,30 +5,9 @@
 //require 'include/new_db_params.inc';
 require 'include/convert_time.inc';
 
-function print_bill($page, $aircraft, $month, $chargee)
+function print_bill($page, $mysqldb, $aircraft, $month, $chargee)
 {
   error_reporting(E_ALL);
-
-  // Title the page
-  //printf("<H1>%s bill for %s in %s</H1>",
-  //       $aircraft, $chargee, $month);
-
-  // Connection information for the database
-  $db_params['host']     = 'localhost';
-  $db_params['user']     = 'airtech';
-  $db_params['password'] = '';
-  $db_params['database'] = 'AircraftTech';
-
-  // Connect to MySQL
-  $mysqldb = new mysqli($db_params['host'],
-                        $db_params['user'],
-                        $db_params['password'],
-                        $db_params['database']);
-  // Check connection
-  if (mysqli_connect_errno()) {
-     printf("Connect failed: %s\n", mysqli_connect_error());
-     exit();
-  }
 
   $oddeven    = "odd";
   $total_cost = 0;
@@ -135,7 +114,7 @@ function print_bill($page, $aircraft, $month, $chargee)
       $page->parse('Bill');
 
       // Free up the memory
-      $list_of_flights->close();
+      $list_of_flights->free_result();
     }
 }
 

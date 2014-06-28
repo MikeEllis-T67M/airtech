@@ -2,8 +2,7 @@
 // All scripts should start with this to ensure that the database is
 // connected and the user is authenticated
 
-function print_pilot_info()
-{
+function print_pilot_info() {
   // Title the page
   printf("<H1>Pilot information</H1>");
 
@@ -56,11 +55,10 @@ function print_pilot_info()
     FROM
         Flights AS F
     GROUP BY Aircraft, Pilot
-    ORDER BY TotalTime DESC";
+    ORDER BY max(landing) DESC";
 
   // Prepare the SQL statement
-  if ($pilot_info = $mysqldb->prepare($pilot_info_sql))
-  {
+  if ($pilot_info = $mysqldb->prepare($pilot_info_sql)) {
     // Bind parameters to the markers - none in this case
     // $pilot_info->bind_param("sss", $aircraft, $month, $chargee);
 
@@ -69,14 +67,13 @@ function print_pilot_info()
       printf("Execute failed: %s.\n", $mysqldn->error());
     }
 
-    // Tell PHP	where to put the results
+    // Tell PHP where to put the results
     if (!$pilot_info->bind_result($pilot, $aircraft, $flights, $totaltime, $first, $last, $fuel, $tach)) {
       printf("Result binding failed: %s.\n", $mysqldb->error());
     }
 
     // Process the results one row at a time
-    while ($pilot_info->fetch())
-      {
+    while ($pilot_info->fetch()) {
         // Alternate the row class as the date
         // changes to given alternate-line greying
         if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
@@ -105,13 +102,8 @@ function print_pilot_info()
 
         // End of row
         echo "</TR>\n";
-      }
-
-    if ($mysqldb->errno()) {
-      printf("Fetch failed: %s\n", $mysqldb->error());
-      exit();
     }
-
+    
     // End of table
     echo "</TBODY>\n";
     echo "</TABLE>\n";
@@ -122,3 +114,4 @@ function print_pilot_info()
   }
 }
 ?>
+

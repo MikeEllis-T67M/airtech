@@ -1,20 +1,22 @@
 <?php
 // Turn on the error reporting
-//error_reporting(E_ALL);    
-//ini_set('display_errors', '1');         
+error_reporting(E_ALL);    
+ini_set('display_errors', '1');         
 
 // Library includes
-require 'HTML/Template/ITX.php';
+require 'HTML/Template/Sigma.php';
 
 // Project includes
 require 'include/db_params.inc';
 require 'include/logbook.inc';
 
 // Initialise the templates library
-$page = new HTML_Template_ITX("templates/");
+$page = new HTML_Template_Sigma("templates/");
 $page->loadTemplatefile("main.tpl");
 
-print_logbook($page, 'G-BNSR', NULL, NULL);
+$db = techlog_connect();
+
+print_logbook($page, $db, 'G-BNSR', NULL, NULL);
 
 //$page->parse("__global__");
 

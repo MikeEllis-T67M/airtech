@@ -1,11 +1,10 @@
 <?php
 // All scripts should start with this to ensure that the database is
 // connected and the user is authenticated
-require 'include/db_params.inc';
 require 'include/convert_time.inc';
 
-function print_techlog($page, $aircraft, $month, $chargee)
-{
+function print_techlog($page, $db, $aircraft, $month, $chargee)
+{ 
   // Get some data from the database
   $sql = "SELECT   DATE_FORMAT(F.Takeoff, '%a, %D %b %Y')               AS TODate,
                    DATE_FORMAT(F.Landing, '%a, %D %b %Y')               AS LdgDate,
@@ -35,14 +34,14 @@ function print_techlog($page, $aircraft, $month, $chargee)
           ORDER BY Takeoff DESC";
 
   // Execute the query and put results in $result
-  $flight_list = mysql_query($sql)
+  $flight_list = $db->query($sql)
   or die ('Unable to execute query - '.$sql.' Error is' . mysql_error());
 
   $oddeven   = "odd";
   $last_date = "";
 
   // Write each flight out one row at a time
-  while ($flight = mysql_fetch_assoc($flight_list))
+  while ($flight = $flight_list->fetch_assoc())
   {
     // Alternate the row class as the date changes to given alternate-line greying
     if ($flight['TODate'] != $last_date)
@@ -100,6 +99,6 @@ function print_techlog($page, $aircraft, $month, $chargee)
   $page->parse('TechLogDate');
 
   // Free up the memory
-  mysql_free_result($flight_list);
+  $flight_list->free_result();
 }
 ?>
