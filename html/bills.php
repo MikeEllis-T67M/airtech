@@ -1,6 +1,6 @@
 <?php
 // Turn on the error reporting
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 
 // Library includes
 require 'HTML/Template/ITX.php';
