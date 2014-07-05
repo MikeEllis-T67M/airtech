@@ -88,7 +88,6 @@
                 <TH>Airframe</TH>
                 <TH>Engine</TH>
                 <TH>Prop</TH>
-                <TH>Hours to check</TH>
               </TR>
             </THEAD>
             <TBODY CLASS="techlog_scrolling">
@@ -100,7 +99,6 @@
                 <TD>{Airframe}</TD>
                 <TD>{Engine}</TD>
                 <TD>{Prop}</TD>
-                <TD>{HoursToRun}</TD>
               </TR>
               <!-- END LogbookRow -->
             </TBODY>

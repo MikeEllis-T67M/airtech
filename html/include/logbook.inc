@@ -6,7 +6,7 @@ require 'include/convert_time.inc';
 function print_logbook($page, $db, $aircraft, $month, $chargee)
 {
     // Get some data from the database
-    $sql = "SELECT   DateF, Flights, FlightTime, Airframe, Engine, Prop, HoursToRun 
+    $sql = "SELECT   DateF, Flights, FlightTime, Airframe, Engine, Prop 
 	        FROM     LogbookFormatted
 			WHERE    DATE_SUB(CURDATE(),INTERVAL 90 DAY) <= Date;";
 
