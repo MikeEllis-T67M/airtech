@@ -25,7 +25,7 @@ function calculate_airframe_hours($aircraft)
   $last_check = 0;
   
   // Process each flight in turn
-  while ($flight = $flight_list->fetch_assoc())
+  while ($flight = $all_flights->fetch_assoc())
   {
     $sql = "SELECT MAX(DateOfCheck) AS CRS_Date
             FROM   CRS
