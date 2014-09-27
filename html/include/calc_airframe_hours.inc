@@ -33,7 +33,8 @@ function calculate_airframe_hours($aircraft)
             AND    Aircraft = '" . $aircraft . "'";
              
     $result   = $db->query($sql);
-    $crs_date = $result->fetch_field();
+	$crs      = $result->fetch_assoc();
+    $crs_date = $crs['CRS_Date'];
     
     // Find the right entry in the CRS table
     $sql = "SELECT HoursAtCheck, DateOfCheck
