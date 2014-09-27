@@ -7,6 +7,7 @@ require 'include/convert_time.inc';
 function calculate_airframe_hours($aircraft)
 {
   // Get some data from the database
+  $db = techlog_connect();
   $aircraft = "G-BNSR";
 
   $sql = "SELECT   Takeoff,
@@ -18,27 +19,21 @@ function calculate_airframe_hours($aircraft)
           ORDER BY Takeoff";
 
   // Execute the query and put results in $result
-  $all_flights = mysql_query($sql)
-      or die ('Unable to execute query '.$sql.'. Error was: ' . mysql_error());
-
+  $all_flights = $db->query($sql);
+  
   $afhours    = 0;
   $last_check = 0;
   
   // Process each flight in turn
-  while ($flight = mysql_fetch_assoc($all_flights))
+  while ($flight = $flight_list->fetch_assoc())
   {
     $sql = "SELECT MAX(DateOfCheck) AS CRS_Date
             FROM   CRS
             WHERE  DateOfCheck < '" . $flight['Takeoff'] . "'
             AND    Aircraft = '" . $aircraft . "'";
              
-    $result   = mysql_query($sql)
-      or die ('Unable to execute query '.$sql.'. Error was: ' . mysql_error());
-
-    $crs_date = mysql_result($result, 0)
-      or die ('Unable to get results from '.$sql.'. Error was: ' . mysql_error());
-
-    mysql_free_result($result);
+    $result   = $db->query($sql);
+    $crs_date = $result->fetch_field();
     
     // Find the right entry in the CRS table
     $sql = "SELECT HoursAtCheck, DateOfCheck
@@ -46,13 +41,9 @@ function calculate_airframe_hours($aircraft)
             WHERE  DateOfCheck = '" . $crs_date . "'
             AND    Aircraft = '" . $aircraft . "'";
              
-    $result         = mysql_query($sql)
-      or die ('Unable to execute query '.$sql.'. Error was: ' . mysql_error());
+    $result = $db->query($sql);
 
-    $crs_details = mysql_fetch_assoc($result)
-      or die ('Unable to get results from '.$sql.'. Error was: ' . mysql_error());
-      
-    mysql_free_result($result);
+    $crs_details =$result->fetch_assoc();
 
     // Handle the initial condition
     if ($last_check == 0)
@@ -106,8 +97,8 @@ function calculate_airframe_hours($aircraft)
       $sql    = "UPDATE Flights SET EndAirframeHours = ".$afhours." ".
                 "WHERE Takeoff = '".$flight['Takeoff']."' ".
                 "AND Aircraft = '".$aircraft."'";
-      $update = mysql_query($sql)
-        or die ('Unable to execute query '.$sql.'. Error was: ' . mysql_error());
+
+      $db->query($sql);
     }
     else
     {
@@ -123,7 +114,5 @@ function calculate_airframe_hours($aircraft)
       
     }
   }
-  
-  mysql_free_result($all_flights);
 }
 ?>
