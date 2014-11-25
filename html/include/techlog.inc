@@ -22,7 +22,7 @@ function print_techlog($page, $db, $aircraft, $month, $chargee)
                    F.Pax,
                    F.Notes,
                    TO_DAYS(C.DateOfNextCheck) - TO_DAYS(F.Takeoff)     AS DaysToCheck,
-                   TIME_FORMAT(SEC_TO_TIME((C.HoursAtNextCheck - F.EndAirframeHours)*3600), '%k:%i')
+                   TIME_FORMAT(SEC_TO_TIME((1+C.HoursAtNextCheck - F.EndAirframeHours)*3600), '%k:%i')
                                                                        AS HoursToCheck,
                    DATE_FORMAT(F.Takeoff, '%Y%c%d%H%i%s')            AS Pkey
           FROM     Flights AS F
