@@ -88,8 +88,8 @@
                 <TH>Airframe</TH>
                 <TH>Engine</TH>
                 <TH>Prop</TH>
-                <TH>Hours to check</TH>
-                <TH>Oil</TH>
+                <TH>Hours to<BR>check</TH>
+                <TH>Oil<br>added</TH>
               </TR>
             </THEAD>
             <TBODY CLASS="techlog_scrolling">
