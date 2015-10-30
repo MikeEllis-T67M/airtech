@@ -42,7 +42,10 @@
             </UL>
           </DIV>
         <!-- END Errors -->
-        <!-- BEGIN TechLogTable -->
+        
+		
+		
+		<!-- BEGIN TechLogTable -->
           <DIV CLASS="techlog">
           <TABLE CLASS="techlog_table" cellpadding="0" cellspacing="0">
             <THEAD CLASS="techlog_fixed">
@@ -77,7 +80,10 @@
           </TABLE>
           </DIV>
         <!-- END TechLogTable -->
-        <!-- BEGIN LogbookTable -->
+        
+		
+		
+		<!-- BEGIN LogbookTable -->
           <DIV CLASS="techlog">
           <TABLE CLASS="techlog_table" cellpadding="0" cellspacing="0">
             <THEAD CLASS="techlog_fixed">
@@ -109,7 +115,10 @@
           </TABLE>
           </DIV>
         <!-- END LogbookTable -->
-        <!-- BEGIN Bill -->
+        
+		
+		
+		<!-- BEGIN Bill -->
           <DIV CLASS="techlog">
           <TABLE CLASS="techlog_table" cellpadding="0" cellspacing="0">
             <THEAD CLASS="techlog_fixed">
@@ -146,9 +155,60 @@
           </TABLE>
           </DIV>
         <!-- END Bill -->
+        
+		
+		
+		<!-- BEGIN CubairLogTable -->
+          <DIV CLASS="techlog">
+          <TABLE CLASS="techlog_table" cellpadding="4pt" cellspacing="0">
+            <THEAD CLASS="techlog_fixed">
+              <TR>
+                <TH rowspan = 2>Month</TH>
+                <TH colspan = 2>Fuel uplift</TH>
+                <TH rowspan = 2>Oil uplift</TH>
+                <TH colspan = 2>Cubair</TH>
+                <TH colspan = 2>Group</TH>
+              </TR>
+			  <TR>
+				<TH>Redhill</TH>
+				<TH>Other</TH>
+				<TH>Flight time</TH>
+				<TH>Flights</TH>
+				<TH>Flight time</TH>
+				<TH>Flights</TH>
+			  </TR>
+            </THEAD>
+            <TBODY CLASS="techlog_scrolling">
+              <!-- BEGIN CubairLogDate -->
+              <TR class="{date_oddeven}">
+                <TH colspan=8><H2>{TODate}</H2></TH>
+              </TR>
+              <!-- BEGIN CubairLogRow -->
+			  <TR class="{oddeven}">
+                <TD>{Month}</TD>
+                <TD>{RedhillFuel}</TD>
+                <TD>{OtherFuel}</TD>
+                <TD>{Oil}</TD>
+                <TD>{Cubair}</TD>
+				<TD>{CubairFlights}</TD>
+                <TD>{Grp}</TD>
+				<TD>{GrpFlights}</TD>
+              </TR>
+              <!-- END CubairLogRow -->
+			  <!-- END CubairLogDate -->
+            </TBODY>
+          </TABLE>
+          </DIV>
+        <!-- END CubairLogTable -->
+		
+		
+		
         <!-- BEGIN FlightEntryForm -->
         <!-- END FlightEntryForm -->
-        <!-- BEGIN BillGrid -->
+        
+		
+		
+		<!-- BEGIN BillGrid -->
           <DIV CLASS="techlog">
           <TABLE CLASS="techlog_table" cellpadding="0" cellspacing="0">
             <THEAD CLASS="techlog_fixed">
@@ -174,6 +234,9 @@
           </TABLE>
           </DIV>
         <!-- END BillGrid -->
+		
+		
+		
       </DIV>
     </DIV>
   </DIV>
