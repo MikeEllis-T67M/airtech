@@ -13,7 +13,8 @@ function print_cubair($page, $db, $aircraft, $month, $chargee)
 				   CubairFlights AS CubairFlights,
 				   CubairUse     AS Cubair,
 				   GroupFlights  AS GrpFlights,
-				   GroupUse      AS Grp			   
+				   GroupUse      AS Grp,
+				   URL           AS URL
           FROM     CubairMonthlySummary";
 		  
   // Execute the query and put results in $result

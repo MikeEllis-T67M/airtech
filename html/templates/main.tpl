@@ -184,8 +184,8 @@
                 <TH colspan=8><H2>{TODate}</H2></TH>
               </TR>
               <!-- BEGIN CubairLogRow -->
-			  <TR class="{oddeven}">
-                <TD>{Month}</TD>
+              <TR class="{oddeven}">
+				<TD><A HREF="{URL}">{Month}</A></TD>
                 <TD>{RedhillFuel}</TD>
                 <TD>{OtherFuel}</TD>
                 <TD>{Oil}</TD>
