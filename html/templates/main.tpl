@@ -95,6 +95,7 @@
                 <TH>Engine</TH>
                 <TH>Prop</TH>
                 <TH>Hours to<BR>check</TH>
+                <TH>Estimated date<BR>of next check</TH>
                 <TH>Oil<br>added</TH>
               </TR>
             </THEAD>
@@ -108,6 +109,7 @@
                 <TD>{Engine}</TD>
                 <TD>{Prop}</TD>
                 <TD>{HoursToRun}</TD>
+				<TD>{EstDateOfCheck}</TD>
                 <TD>{Oil}</TD>
               </TR>
               <!-- END LogbookRow -->

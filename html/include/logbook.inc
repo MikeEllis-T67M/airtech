@@ -6,7 +6,7 @@ require 'include/convert_time.inc';
 function print_logbook($page, $db, $aircraft, $month, $chargee)
 {
     // Get some data from the database
-    $sql = "SELECT   DateF, Flights, FlightTime, Airframe, Engine, Prop, HoursToRun, Oil 
+    $sql = "SELECT   DateF, Flights, FlightTime, Airframe, Engine, Prop, HoursToRun, EstDateOfCheck, Oil 
 	        FROM     LogbookFormattedWithHoursToRun;";
 
     // Execute the query and put results in $result
