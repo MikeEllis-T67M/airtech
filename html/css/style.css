@@ -6,8 +6,8 @@ body {
 /* General text styles */
 h1, h2 {
   	font-family:      "Comic Sans MS", arial, helvetica, sans-serif;
-	  font-style:       italic;
-	  font-weight:      bold;
+	font-style:       italic;
+	font-weight:      bold;
     padding:          0px;
     margin:           2px;
 }
@@ -60,7 +60,7 @@ a:active {
 /* Navbar */
 #navbar a {
 	text-align:   left;
-	padding-left: 10px;
+	padding-left: 30px;
 }
 
 /* Class definition for the borders */
