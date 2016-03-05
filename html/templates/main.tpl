@@ -255,7 +255,7 @@
           <P><A HREF="http://www.gbnsr.org.uk/docs/checklist.pdf">Aircraft checklist</A>
           <P><A HREF="http://www.gbnsr.org.uk/docs/FlightLogSheet.pdf">Flight record sheet</A>
           <P><A HREF="http://www.gbnsr.org.uk/docs/DefectSheet.pdf">Defect record sheet</A>
-        <H2>Pilot's Operating Handbook</H2>
+        <H2>POH</H2>
 		  <P><a href="http://gbnsr.org.uk/docs/pilots_operating_handbook_g-bont.pdf">Searchable PDF (courtesy of G-BONT)</a>
 		  <br>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter0.pdf">Chapter 0: Introduction</a>
@@ -263,7 +263,7 @@
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter2.pdf">Chapter 2: Pmitations and placards</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter3.pdf">Chapter 3: Normal procedures</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter4.pdf">Chapter 4: Emergency procedures</a>
-		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter5.pdf">Chapter 5: Performance and pre-flight planning</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter5.pdf">Chapter 5: Performance</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter6.pdf">Chapter 6: Aircraft systems</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter7.pdf">Chapter 7: HandPng</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter8.pdf">Chapter 8: Weight and Balance</a>
