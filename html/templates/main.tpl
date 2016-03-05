@@ -255,6 +255,33 @@
           <P><A HREF="http://www.gbnsr.org.uk/docs/checklist.pdf">Aircraft checklist</A>
           <P><A HREF="http://www.gbnsr.org.uk/docs/FlightLogSheet.pdf">Flight record sheet</A>
           <P><A HREF="http://www.gbnsr.org.uk/docs/DefectSheet.pdf">Defect record sheet</A>
+        <H2>Pilot's Operating Handbook</H2>
+		  <P><a href="http://gbnsr.org.uk/docs/pilots_operating_handbook_g-bont.pdf">Searchable PDF courtesy of G-BONT</a>
+		  <br>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter0.pdf">Chapter 0: Introduction</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter1.pdf">Chapter 1: Details and dimensions</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter2.pdf">Chapter 2: Pmitations and placards</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter3.pdf">Chapter 3: Normal procedures</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter4.pdf">Chapter 4: Emergency procedures</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter5.pdf">Chapter 5: Performance and FPght planning</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter6.pdf">Chapter 6: Aircraft systems</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter7.pdf">Chapter 7: HandPng</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter8.pdf">Chapter 8: Weight and Balance</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter9.pdf">Chapter 9: Supplements</a>
+		  <BR>
+		  <P><a href="http://www8.garmin.com/manuals/GTX330Transponder_PilotsGuide.pdf">Garmin GTX330 (transponder) guide</a>
+		  <P><a href="http://gbnsr.org.uk/docs/SL30Nav_Comm_UserGuide.pdf">SL30 Nav/Com manual</a>
+		  <P><a href="http://gbnsr.org.uk/docs/Slingsby_T67M2_systems.pptx">Systems overview</a>
+		<H2>Parachute handbook</H2>
+		  <P><a href="http://gbnsr.org.uk/docs/Parachute_Frontispiece.pdf">Frontispiece</a>
+		  <P><a href="http://gbnsr.org.uk/docs/Parachute_GeneralInfo.pdf">General Information</a>
+		  <P><a href="http://gbnsr.org.uk/docs/Parachute_Maintenance.pdf">Routine maintenance</a>
+		  <P><a href="http://gbnsr.org.uk/docs/Parachute_Packing.pdf">Re-packing instructions</a>
+		<H2>Other documents</h2>
+		  <P><a href="http://gbnsr.org.uk/docs/InstructorGuide.pdf">Instructors' Notes</a>
+		  <P><a href="http://gbnsr.org.uk/docs/StudentGuide.pdf">Students' Notes</a>
+		  <P><a href="http://gbnsr.org.uk/docs/LycomingHandbook.pdf">Engine handbook</a>
+		  <P><a href="http://gbnsr.org.uk/flyer/index.html">Publicity flyer</a>
         <H2>External links</H2>
           <P><A HREF="http://www.cubair.demon.co.uk/pages/members/cubair_online_scheduling.htm">Online booking system</A>
           <P><A HREF="http://www.cubair.co.uk">Cubair Flight Training</A>
