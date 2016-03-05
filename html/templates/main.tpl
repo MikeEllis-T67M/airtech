@@ -247,16 +247,14 @@
   <DIV id="layout_left">
     <DIV class="bordered">
       <DIV id="navbar" class="content">
-        <H2>Aircraft info</H2>
-          <P><A HREF="">Technical log</A>
+        <H2>Tech Log</H2>
+          <P><A HREF="http://gbnsr.dyndns.org:40080/airtech">Flight records</A>
+          <P><A HREF="http://gbnsr.dyndns.org:40080/airtech/logbook.php">Logbook summary</A>
+          <P><A HREF="http://gbnsr.dyndns.org:40080/airtech/cubair.php">Cubair summary</A>
         <H2>Documentation</H2>
           <P><A HREF="http://www.gbnsr.org.uk/docs/checklist.pdf">Aircraft checklist</A>
           <P><A HREF="http://www.gbnsr.org.uk/docs/FlightLogSheet.pdf">Flight record sheet</A>
           <P><A HREF="http://www.gbnsr.org.uk/docs/DefectSheet.pdf">Defect record sheet</A>
-		<H2>Tech log entries</H2>
-          <P><A HREF="http://gbnsr.dyndns.org:40080/airtech">Flight records</A>
-          <P><A HREF="http://gbnsr.dyndns.org:40080/airtech/logbook.php">Logbook summary</A>
-          <P><A HREF="http://gbnsr.dyndns.org:40080/airtech/cubair.php">Cubair summary</A>
         <H2>External links</H2>
           <P><A HREF="http://www.cubair.demon.co.uk/pages/members/cubair_online_scheduling.htm">Online booking system</A>
           <P><A HREF="http://www.cubair.co.uk">Cubair Flight Training</A>
