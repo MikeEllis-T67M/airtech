@@ -260,12 +260,12 @@
 		  <br>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter0.pdf">Chapter 0: Introduction</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter1.pdf">Chapter 1: Details and dimensions</a>
-		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter2.pdf">Chapter 2: Pmitations and placards</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter2.pdf">Chapter 2: Limitations and placards</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter3.pdf">Chapter 3: Normal procedures</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter4.pdf">Chapter 4: Emergency procedures</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter5.pdf">Chapter 5: Performance</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter6.pdf">Chapter 6: Aircraft systems</a>
-		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter7.pdf">Chapter 7: HandPng</a>
+		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter7.pdf">Chapter 7: Handling</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter8.pdf">Chapter 8: Weight and Balance</a>
 		  <P><a href="http://gbnsr.org.uk/docs/POH_Chapter9.pdf">Chapter 9: Supplements</a>
 		  <BR>
