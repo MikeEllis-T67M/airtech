@@ -31,13 +31,13 @@ function print_cubair($page, $db, $aircraft, $month, $chargee)
     if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
 	
 	// Modify zero values into dashes
-	if ($logrow{'RedhillFuel'}   == '0') $logrow{'RedhillFuel'}   = '-';
-	if ($logrow{'OtherFuel'}     == '0') $logrow{'OtherFuel'}     = '-';
-	if ($logrow{'Oil'}           == '0') $logrow{'Oil'}           = '-';
-	if ($logrow{'CubairFlights'} == '0') $logrow{'CubairFlights'} = '-';
-	if ($logrow{'Cubair'}        == '0') $logrow{'Cubair'}        = '-';
-	if ($logrow{'GrpFlights'}    == '0') $logrow{'GrpFlights'}    = '-';
-	if ($logrow{'Grp'}           == '0') $logrow{'Grp'}           = '-';
+	if ($logrow{'RedhillFuel'}   == '0')    $logrow{'RedhillFuel'}   = '-';
+	if ($logrow{'OtherFuel'}     == '0')    $logrow{'OtherFuel'}     = '-';
+	if ($logrow{'Oil'}           == '0')    $logrow{'Oil'}           = '-';
+	if ($logrow{'CubairFlights'} == '0')    $logrow{'CubairFlights'} = '-';
+	if ($logrow{'Cubair'}        == '0:00') $logrow{'Cubair'}        = '-';
+	if ($logrow{'GrpFlights'}    == '0')    $logrow{'GrpFlights'}    = '-';
+	if ($logrow{'Grp'}           == '0:00') $logrow{'Grp'}           = '-';
 
     // Display a row of row of log information
     $page->setCurrentBlock('CubairLogRow');
