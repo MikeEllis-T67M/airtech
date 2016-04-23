@@ -14,7 +14,8 @@ function print_cubair($page, $db, $aircraft, $month, $chargee)
 				   CubairUse     AS Cubair,
 				   GroupFlights  AS GrpFlights,
 				   GroupUse      AS Grp,
-				   URL           AS URL
+				   URL           AS URL,
+				   AvgFuelBurn   AS AvgFuelBurn
           FROM     CubairMonthlySummary";
 		  
   // Execute the query and put results in $result
@@ -28,11 +29,15 @@ function print_cubair($page, $db, $aircraft, $month, $chargee)
   {
 	// Toggle the colour
     if ($oddeven == "odd") $oddeven = "even"; else $oddeven = "odd";
-
+	
 	// Modify zero values into dashes
-	if ($logrow{'RedhillFuel'} == '0') $logrow{'RedhillFuel'} = '-';
-	if ($logrow{'OtherFuel'}   == '0') $logrow{'OtherFuel'}   = '-';
-	if ($logrow{'Oil'}         == '0') $logrow{'Oil'}         = '-';
+	if ($logrow{'RedhillFuel'}   == '0') $logrow{'RedhillFuel'}   = '-';
+	if ($logrow{'OtherFuel'}     == '0') $logrow{'OtherFuel'}     = '-';
+	if ($logrow{'Oil'}           == '0') $logrow{'Oil'}           = '-';
+	if ($logrow{'CubairFlights'} == '0') $logrow{'CubairFlights'} = '-';
+	if ($logrow{'Cubair'}        == '0') $logrow{'Cubair'}        = '-';
+	if ($logrow{'GrpFlights'}    == '0') $logrow{'GrpFlights'}    = '-';
+	if ($logrow{'Grp'}           == '0') $logrow{'Grp'}           = '-';
 
     // Display a row of row of log information
     $page->setCurrentBlock('CubairLogRow');

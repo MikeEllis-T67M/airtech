@@ -170,6 +170,7 @@
                 <TH rowspan = 2>Oil uplift</TH>
                 <TH colspan = 2>Cubair</TH>
                 <TH colspan = 2>Group</TH>
+				<TH rowspan = 2>Fuel burn</TH>
               </TR>
 			  <TR>
 				<TH>Redhill</TH>
@@ -195,6 +196,7 @@
 				<TD>{CubairFlights}</TD>
                 <TD>{Grp}</TD>
 				<TD>{GrpFlights}</TD>
+				<TD>{AvgFuelBurn}</TD>
               </TR>
               <!-- END CubairLogRow -->
 			  <!-- END CubairLogDate -->
