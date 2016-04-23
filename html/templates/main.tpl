@@ -170,7 +170,7 @@
                 <TH rowspan = 2>Oil uplift</TH>
                 <TH colspan = 2>Cubair</TH>
                 <TH colspan = 2>Group</TH>
-				<TH rowspan = 2>Fuel burn</TH>
+				<TH rowspan = 2>Fuel burn<BR>l/hr</TH>
               </TR>
 			  <TR>
 				<TH>Redhill</TH>
